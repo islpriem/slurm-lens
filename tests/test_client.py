@@ -11,6 +11,7 @@ def client(handler, **kwargs) -> SlurmClient:
         "https://slurm.test",
         "token",
         {PATH},
+        pause=0,
         transport=httpx.MockTransport(handler),
         **kwargs,
     )
@@ -37,7 +38,18 @@ def test_has_no_way_to_change_the_cluster():
     assert not any(hasattr(slurm, name) for name in ("post", "put", "delete", "request"))
 
 
-def test_slurm_errors_in_json_are_returned():
+def test_retries_proxy_errors_without_json():
+    answers = iter([httpx.Response(502, text="Bad Gateway"), httpx.Response(200, json={"ok": 1})])
+    reply = client(lambda request: next(answers)).get(PATH)
+    assert reply.data == {"ok": 1}
+
+
+def test_a_proxy_error_after_the_retries_is_returned():
+    reply = client(lambda request: httpx.Response(502, text="Bad Gateway")).get(PATH)
+    assert (reply.status, reply.error) == (502, "Bad Gateway")
+
+
+def test_slurm_errors_in_json_are_returned_not_retried():
     calls = []
 
     def handler(request):

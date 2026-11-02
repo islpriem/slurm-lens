@@ -17,8 +17,10 @@ class Reply:
 class SlurmClient:
     """GET-only client that refuses every path outside the allowlist."""
 
-    def __init__(self, url, token, allowed, transport=None):
+    def __init__(self, url, token, allowed, pause=1.0, retries=2, transport=None):
         self.allowed = allowed
+        self.pause = pause
+        self.retries = retries
         self.http = httpx.Client(
             base_url=url, headers={"X-SLURM-USER-TOKEN": token}, timeout=300, transport=transport
         )
@@ -26,6 +28,15 @@ class SlurmClient:
     def get(self, path: str, **params) -> Reply:
         if path not in self.allowed:
             raise ValueError(f"{path} is not on the allowlist")
+        for attempt in range(self.retries + 1):
+            time.sleep(self.pause * attempt)
+            reply = self._get(path, params)
+            # no JSON means the proxy failed and not slurmrestd, worth another try
+            if reply.data:
+                break
+        return reply
+
+    def _get(self, path: str, params: dict) -> Reply:
         started = time.monotonic()
         response = self.http.get(path, params=params)
         seconds = time.monotonic() - started
