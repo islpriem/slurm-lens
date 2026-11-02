@@ -1,6 +1,10 @@
 from datetime import UTC, datetime
 
 from slurm_lens.parse import (
+    array_size,
+    gres,
+    hostlist,
+    index_range,
     join,
     num,
     stamp,
@@ -42,3 +46,22 @@ def test_tres_list():
         {"type": "mem", "name": "", "count": 1},
     ]
     assert tres_list(items) == {"gres/gpu:h100": 8, "mem": 1}
+
+
+def test_gres():
+    assert gres("gpu:h100:8(S:0-1)") == [("gpu", "h100", 8, None)]
+    assert gres("gpu:a100:3(IDX:0-1,4)") == [("gpu", "a100", 3, "0-1,4")]
+    assert gres("gpu:gh200:0(IDX:N/A)") == [("gpu", "gh200", 0, None)]
+    assert gres("gpu:2080_ti:8(S:0),gpu:4") == [("gpu", "2080_ti", 8, None), ("gpu", None, 4, None)]
+    assert gres("") == []
+
+
+def test_ranges():
+    assert index_range("0-1,4") == [0, 1, 4]
+    assert index_range(None) == []
+    assert hostlist("gx[07-08,14],gx13v1") == ["gx07", "gx08", "gx14", "gx13v1"]
+    assert hostlist("None assigned") == []
+    assert array_size("0-47%4") == 48
+    assert array_size("1,3,5-7") == 5
+    assert array_size("2-47:5%2") == 10
+    assert array_size("") == 1
