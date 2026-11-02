@@ -1,0 +1,453 @@
+{
+ "nodes": [
+  {
+   "architecture": "x86_64",
+   "burstbuffer_network_address": "",
+   "boards": 1,
+   "boot_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1790614454
+   },
+   "tls_cert_last_renewal": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cert_flags": [],
+   "cluster_name": "cluster",
+   "cores": 56,
+   "specialized_cores": 0,
+   "cpu_binding": 0,
+   "cpu_load": 922,
+   "free_mem": {
+    "set": true,
+    "infinite": false,
+    "number": 5099
+   },
+   "cpus": 224,
+   "effective_cpus": 224,
+   "specialized_cpus": "",
+   "energy": {
+    "average_watts": 276,
+    "base_consumed_energy": 3672,
+    "consumed_energy": 312134082,
+    "current_watts": {
+     "set": true,
+     "infinite": false,
+     "number": 312
+    },
+    "previous_consumed_energy": 312130410,
+    "last_collected": 1793020710
+   },
+   "extra": "",
+   "features": [
+    "aiscb",
+    "VND:NVIDIA",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:SPR",
+    "CPU_SKU:8480C",
+    "CPU_FRQ:2.00GHz",
+    "CPU_EXT:AVX2",
+    "AVX-512",
+    "GPU_SKU:H100",
+    "GPU_MEM:80GB",
+    "GPU_CC:9.0",
+    "GPU_GEN:HOPPER",
+    "IB:NDR",
+    "ETH:100G",
+    "SCRATCH:NVME",
+    "SCRATCH_CAP:28TB",
+    "GLB_SCRATCH"
+   ],
+   "active_features": [
+    "aiscb",
+    "VND:NVIDIA",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:SPR",
+    "CPU_SKU:8480C",
+    "CPU_FRQ:2.00GHz",
+    "CPU_EXT:AVX2",
+    "AVX-512",
+    "GPU_SKU:H100",
+    "GPU_MEM:80GB",
+    "GPU_CC:9.0",
+    "GPU_GEN:HOPPER",
+    "IB:NDR",
+    "ETH:100G",
+    "SCRATCH:NVME",
+    "SCRATCH_CAP:28TB",
+    "GLB_SCRATCH"
+   ],
+   "gpu_spec": "",
+   "gres": "gpu:h100:8(S:0-1)",
+   "gres_drained": "N/A",
+   "gres_used": "gpu:h100:8(IDX:0-7)",
+   "instance_id": "",
+   "instance_type": "",
+   "last_busy": {
+    "set": true,
+    "infinite": false,
+    "number": 1791835978
+   },
+   "mcs_label": "",
+   "specialized_memory": 16384,
+   "name": "gx10",
+   "next_state_after_reboot": [
+    "INVALID"
+   ],
+   "address": "gx10",
+   "hostname": "gx10",
+   "state": [
+    "MIXED",
+    "PLANNED"
+   ],
+   "operating_system": "Linux",
+   "owner": "",
+   "partitions": [
+    "pot-hpi-aisc-batch",
+    "pot-hpi-aisc-shortrun",
+    "admin"
+   ],
+   "port": 6818,
+   "real_memory": 2063919,
+   "res_cores_per_gpu": 0,
+   "comment": "",
+   "reason": "",
+   "reason_changed_at": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "reason_set_by_user": "",
+   "resume_after": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "reservation": "",
+   "suspend_time": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "alloc_memory": 802816,
+   "alloc_cpus": 36,
+   "alloc_idle_cpus": 188,
+   "tres_used": "cpu=36,mem=784G,gres/gpu=8,gres/gpu:h100=8",
+   "slurmd_start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792055830
+   },
+   "sockets": 2,
+   "threads": 2,
+   "temporary_disk": 0,
+   "weight": 1,
+   "topology": "",
+   "tres": "cpu=224,mem=2063919M,billing=32248,gres/gpu=8,gres/gpu:h100=8",
+   "version": "26.05.4"
+  },
+  {
+   "architecture": "x86_64",
+   "burstbuffer_network_address": "",
+   "boards": 1,
+   "boot_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1790925097
+   },
+   "tls_cert_last_renewal": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cert_flags": [],
+   "cluster_name": "cluster",
+   "cores": 18,
+   "specialized_cores": 0,
+   "cpu_binding": 0,
+   "cpu_load": 39,
+   "free_mem": {
+    "set": true,
+    "infinite": false,
+    "number": 112708
+   },
+   "cpus": 72,
+   "effective_cpus": 72,
+   "specialized_cpus": "",
+   "energy": {
+    "average_watts": 84,
+    "base_consumed_energy": 1440,
+    "consumed_energy": 157044087,
+    "current_watts": {
+     "set": true,
+     "infinite": false,
+     "number": 90
+    },
+    "previous_consumed_energy": 157042647,
+    "last_collected": 1793020420
+   },
+   "extra": "",
+   "features": [
+    "c",
+    "x",
+    "VND:FTS",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:CSL",
+    "CPU_SKU:5220S",
+    "CPU_FRQ:2.70GHz",
+    "CPU_EXT:AVX2",
+    "CPU_EXT:AVX-512",
+    "IB:EDR",
+    "ETH:25G",
+    "CONFSTORE",
+    "GLB_SCRATCH"
+   ],
+   "active_features": [
+    "c",
+    "x",
+    "VND:FTS",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:CSL",
+    "CPU_SKU:5220S",
+    "CPU_FRQ:2.70GHz",
+    "CPU_EXT:AVX2",
+    "CPU_EXT:AVX-512",
+    "IB:EDR",
+    "ETH:25G",
+    "CONFSTORE",
+    "GLB_SCRATCH"
+   ],
+   "gpu_spec": "",
+   "gres": "",
+   "gres_drained": "N/A",
+   "gres_used": "",
+   "instance_id": "",
+   "instance_type": "",
+   "last_busy": {
+    "set": true,
+    "infinite": false,
+    "number": 1792986155
+   },
+   "mcs_label": "",
+   "specialized_memory": 16384,
+   "name": "cx01",
+   "next_state_after_reboot": [
+    "INVALID"
+   ],
+   "address": "cx01",
+   "hostname": "cx01",
+   "state": [
+    "MIXED"
+   ],
+   "operating_system": "Linux",
+   "owner": "",
+   "partitions": [
+    "pot-hpi-cpu-batch",
+    "pot-hpi-cpu-interactive",
+    "admin"
+   ],
+   "port": 6818,
+   "real_memory": 190474,
+   "res_cores_per_gpu": 0,
+   "comment": "",
+   "reason": "",
+   "reason_changed_at": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "reason_set_by_user": "",
+   "resume_after": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "reservation": "",
+   "suspend_time": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "alloc_memory": 14336,
+   "alloc_cpus": 6,
+   "alloc_idle_cpus": 66,
+   "tres_used": "cpu=6,mem=14G",
+   "slurmd_start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1791835978
+   },
+   "sockets": 2,
+   "threads": 2,
+   "temporary_disk": 20470,
+   "weight": 1,
+   "topology": "",
+   "tres": "cpu=72,mem=190474M,billing=4500",
+   "version": "26.05.4"
+  },
+  {
+   "architecture": "",
+   "burstbuffer_network_address": "",
+   "boards": 1,
+   "boot_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tls_cert_last_renewal": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cert_flags": [],
+   "cluster_name": "cluster",
+   "cores": 56,
+   "specialized_cores": 0,
+   "cpu_binding": 0,
+   "cpu_load": 0,
+   "free_mem": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus": 224,
+   "effective_cpus": 224,
+   "specialized_cpus": "",
+   "energy": {
+    "average_watts": 0,
+    "base_consumed_energy": 0,
+    "consumed_energy": 0,
+    "current_watts": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "previous_consumed_energy": 0,
+    "last_collected": 0
+   },
+   "extra": "",
+   "features": [
+    "aiscb",
+    "VND:NVIDIA",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:SPR",
+    "CPU_SKU:8480C",
+    "CPU_FRQ:2.00GHz",
+    "CPU_EXT:AVX2",
+    "AVX-512",
+    "GPU_SKU:H100",
+    "GPU_MEM:80GB",
+    "GPU_CC:9.0",
+    "GPU_GEN:HOPPER",
+    "IB:NDR",
+    "ETH:100G",
+    "SCRATCH:NVME",
+    "SCRATCH_CAP:28TB",
+    "GLB_SCRATCH"
+   ],
+   "active_features": [
+    "aiscb",
+    "VND:NVIDIA",
+    "ARCH:X86",
+    "CPU_MNF:INTEL",
+    "CPU_PROD:XEON",
+    "CPU_GEN:SPR",
+    "CPU_SKU:8480C",
+    "CPU_FRQ:2.00GHz",
+    "CPU_EXT:AVX2",
+    "AVX-512",
+    "GPU_SKU:H100",
+    "GPU_MEM:80GB",
+    "GPU_CC:9.0",
+    "GPU_GEN:HOPPER",
+    "IB:NDR",
+    "ETH:100G",
+    "SCRATCH:NVME",
+    "SCRATCH_CAP:28TB",
+    "GLB_SCRATCH"
+   ],
+   "gpu_spec": "",
+   "gres": "gpu:h100:8(S:0-1)",
+   "gres_drained": "N/A",
+   "gres_used": "gpu:h100:0(IDX:N/A)",
+   "instance_id": "",
+   "instance_type": "",
+   "last_busy": {
+    "set": true,
+    "infinite": false,
+    "number": 1791921201
+   },
+   "mcs_label": "",
+   "specialized_memory": 16384,
+   "name": "gx14",
+   "next_state_after_reboot": [
+    "INVALID"
+   ],
+   "address": "gx14",
+   "hostname": "gx14",
+   "state": [
+    "DOWN",
+    "NOT_RESPONDING"
+   ],
+   "operating_system": "Linux",
+   "owner": "",
+   "partitions": [
+    "pot-hpi-aisc-batch",
+    "pot-hpi-aisc-shortrun",
+    "admin"
+   ],
+   "port": 6818,
+   "real_memory": 2063919,
+   "res_cores_per_gpu": 0,
+   "comment": "",
+   "reason": "Not responding",
+   "reason_changed_at": {
+    "set": true,
+    "infinite": false,
+    "number": 1791959787
+   },
+   "reason_set_by_user": "",
+   "resume_after": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "reservation": "",
+   "suspend_time": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "alloc_memory": 0,
+   "alloc_cpus": 0,
+   "alloc_idle_cpus": 224,
+   "tres_used": "",
+   "slurmd_start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "sockets": 2,
+   "threads": 2,
+   "temporary_disk": 0,
+   "weight": 1,
+   "topology": "",
+   "tres": "cpu=224,mem=2063919M,billing=32248,gres/gpu=8,gres/gpu:h100=8",
+   "version": ""
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

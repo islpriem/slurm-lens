@@ -1,0 +1,2208 @@
+{
+ "jobs": [
+  {
+   "account": "aisc",
+   "accrue_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792538865
+   },
+   "admin_comment": "",
+   "allocating_node": "",
+   "array_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_id": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "array_max_tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_string": "",
+   "association_id": 1,
+   "batch_features": "",
+   "batch_flag": true,
+   "batch_host": "",
+   "flags": [
+    "EXACT_TASK_COUNT_REQUESTED",
+    "EXACT_CPU_COUNT_REQUESTED",
+    "ACCRUE_COUNT_CLEARED",
+    "JOB_WAS_RUNNING",
+    "EXACT_MEMORY_REQUESTED",
+    "USING_DEFAULT_QOS",
+    "USING_DEFAULT_WCKEY"
+   ],
+   "burst_buffer": "",
+   "burst_buffer_state": "",
+   "cluster": "cluster",
+   "cluster_features": "",
+   "command": "",
+   "comment": "",
+   "container": "",
+   "container_id": "",
+   "container_type": "",
+   "contiguous": false,
+   "core_spec": 0,
+   "thread_spec": 32766,
+   "cores_per_socket": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "billable_tres": {
+    "set": true,
+    "infinite": false,
+    "number": 8192.0
+   },
+   "cpus_per_task": {
+    "set": true,
+    "infinite": false,
+    "number": 96
+   },
+   "cpu_frequency_minimum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_maximum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_governor": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus_per_tres": "",
+   "cron": "",
+   "deadline": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "delay_boot": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "dependency": "",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "eligible_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792538865
+   },
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1793461068
+   },
+   "excluded_nodes": "",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "features": "SCRATCH:NVME",
+   "federation_origin": "",
+   "federation_siblings_active": "",
+   "federation_siblings_viable": "",
+   "gres_detail": [
+    "gpu:h100:8(IDX:0-7)"
+   ],
+   "group_id": 100,
+   "group_name": "users",
+   "het_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "het_job_id_set": "",
+   "het_job_offset": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "job_id": 2676228,
+   "job_resources": {
+    "select_type": [
+     "CR_CORE_MEMORY"
+    ],
+    "nodes": {
+     "count": 1,
+     "select_type": [
+      "ONE_ROW"
+     ],
+     "list": "gx09",
+     "whole": false,
+     "allocation": [
+      {
+       "index": 0,
+       "name": "gx09",
+       "cpus": {
+        "count": 96,
+        "used": 96
+       },
+       "memory": {
+        "used": 524288,
+        "allocated": 524288
+       },
+       "sockets": [
+        {
+         "index": 0,
+         "cores": [
+          {
+           "index": 0,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 1,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 2,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 3,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 4,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 5,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 6,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 7,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 8,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 9,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 10,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 11,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 12,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 13,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 14,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 15,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 16,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 17,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 18,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 19,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 20,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 21,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 22,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 23,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 24,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 25,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 26,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 27,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 28,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 29,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 30,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 31,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 32,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 33,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 34,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 35,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 36,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 37,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 38,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 39,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 40,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 41,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 42,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 43,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 44,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 45,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 46,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 47,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 48,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 49,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 50,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 51,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 52,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 53,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 54,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 55,
+           "status": [
+            "UNALLOCATED"
+           ]
+          }
+         ]
+        },
+        {
+         "index": 1,
+         "cores": [
+          {
+           "index": 0,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 1,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 2,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 3,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 4,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 5,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 6,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 7,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 8,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 9,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 10,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 11,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 12,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 13,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 14,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 15,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 16,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 17,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 18,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 19,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 20,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 21,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 22,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 23,
+           "status": [
+            "ALLOCATED"
+           ]
+          },
+          {
+           "index": 24,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 25,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 26,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 27,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 28,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 29,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 30,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 31,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 32,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 33,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 34,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 35,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 36,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 37,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 38,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 39,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 40,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 41,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 42,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 43,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 44,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 45,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 46,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 47,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 48,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 49,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 50,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 51,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 52,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 53,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 54,
+           "status": [
+            "UNALLOCATED"
+           ]
+          },
+          {
+           "index": 55,
+           "status": [
+            "UNALLOCATED"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "cpus": 96,
+    "threads_per_core": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "job_size_str": [],
+   "job_state": [
+    "RUNNING"
+   ],
+   "last_sched_evaluation": {
+    "set": true,
+    "infinite": false,
+    "number": 1792856268
+   },
+   "licenses": "",
+   "licenses_allocated": "",
+   "mail_type": [],
+   "mail_user": "",
+   "max_cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "max_nodes": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "mcs_label": "",
+   "memory_per_tres": "",
+   "memory_update_delay": 0,
+   "memory_update_margin": 0,
+   "name": "",
+   "network": "",
+   "nodes": "gx09",
+   "nice": 0,
+   "tasks_per_core": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_tres": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "tasks_per_socket": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_board": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 96
+   },
+   "node_count": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "partition": "pot-hpi-aisc-batch",
+   "prefer": "",
+   "memory_per_cpu": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "memory_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 524288
+   },
+   "minimum_cpus_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 96
+   },
+   "minimum_tmp_disk_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preempt_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preemptable_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792856268
+   },
+   "pre_sus_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 55350
+   },
+   "priority_by_partition": [],
+   "profile": [
+    "NOT_SET"
+   ],
+   "qos": "aisc",
+   "reboot": false,
+   "required_nodes": "",
+   "required_switches": 0,
+   "requeue": true,
+   "resize_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "restart_cnt": 0,
+   "resv_name": "",
+   "scheduled_nodes": "",
+   "segment_size": 0,
+   "selinux_context": "",
+   "shared": [],
+   "step_id": {
+    "sluid": "sC1NM4WVHX2J00",
+    "job_id": {
+     "set": true,
+     "infinite": false,
+     "number": 2676228
+    },
+    "step_het_component": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "step_id": "entire"
+   },
+   "sockets_per_board": 0,
+   "sockets_per_node": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792856268
+   },
+   "state_description": "",
+   "state_reason": "None",
+   "standard_input": "",
+   "standard_output": "",
+   "standard_error": "",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "submit_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1791969784
+   },
+   "submit_line": "",
+   "suspend_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "system_comment": "",
+   "time_limit": {
+    "set": true,
+    "infinite": false,
+    "number": 10080
+   },
+   "time_minimum": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "threads_per_core": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "tres_bind": "",
+   "tres_freq": "",
+   "tres_per_job": "",
+   "tres_per_node": "gres/gpu:h100:8",
+   "tres_per_socket": "",
+   "tres_per_task": "cpu=96",
+   "tres_req_str": "cpu=96,mem=512G,node=1,billing=8192,gres/gpu=8,gres/gpu:h100=8",
+   "tres_alloc_str": "cpu=96,mem=512G,node=1,billing=8192,gres/gpu=8,gres/gpu:h100=8",
+   "user_id": 1000,
+   "user_name": "alice",
+   "maximum_switch_wait_time": 0,
+   "wckey": "",
+   "current_working_directory": ""
+  },
+  {
+   "account": "aisc",
+   "accrue_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792882228
+   },
+   "admin_comment": "",
+   "allocating_node": "",
+   "array_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_id": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "array_max_tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_string": "",
+   "association_id": 1,
+   "batch_features": "",
+   "batch_flag": true,
+   "batch_host": "",
+   "flags": [
+    "KILL_INVALID_DEPENDENCY",
+    "EXACT_CPU_COUNT_REQUESTED",
+    "EXACT_MEMORY_REQUESTED",
+    "USING_DEFAULT_QOS",
+    "USING_DEFAULT_WCKEY",
+    "BACKFILL_ATTEMPTED",
+    "SCHEDULING_ATTEMPTED"
+   ],
+   "burst_buffer": "",
+   "burst_buffer_state": "",
+   "cluster": "cluster",
+   "cluster_features": "",
+   "command": "",
+   "comment": "",
+   "container": "",
+   "container_id": "",
+   "container_type": "",
+   "contiguous": false,
+   "core_spec": 0,
+   "thread_spec": 32766,
+   "cores_per_socket": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "billable_tres": {
+    "set": false,
+    "infinite": false,
+    "number": 0.0
+   },
+   "cpus_per_task": {
+    "set": true,
+    "infinite": false,
+    "number": 32
+   },
+   "cpu_frequency_minimum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_maximum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_governor": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus_per_tres": "",
+   "cron": "",
+   "deadline": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "delay_boot": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "dependency": "",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "eligible_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792882228
+   },
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1793570455
+   },
+   "excluded_nodes": "ga03,gx13v1,gx17v1",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "features": "GLB_SCRATCH",
+   "federation_origin": "",
+   "federation_siblings_active": "",
+   "federation_siblings_viable": "",
+   "gres_detail": [],
+   "group_id": 100,
+   "group_name": "users",
+   "het_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "het_job_id_set": "",
+   "het_job_offset": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "job_id": 2764153,
+   "job_resources": null,
+   "job_size_str": [],
+   "job_state": [
+    "PENDING"
+   ],
+   "last_sched_evaluation": {
+    "set": true,
+    "infinite": false,
+    "number": 1793021140
+   },
+   "licenses": "",
+   "licenses_allocated": "",
+   "mail_type": [],
+   "mail_user": "",
+   "max_cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "max_nodes": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "mcs_label": "",
+   "memory_per_tres": "",
+   "memory_update_delay": 0,
+   "memory_update_margin": 0,
+   "name": "",
+   "network": "",
+   "nodes": "",
+   "nice": 0,
+   "tasks_per_core": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_tres": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_socket": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_board": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 32
+   },
+   "node_count": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "partition": "pot-hpi-aisc-batch",
+   "prefer": "",
+   "memory_per_cpu": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "memory_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 262144
+   },
+   "minimum_cpus_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 32
+   },
+   "minimum_tmp_disk_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preempt_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preemptable_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "pre_sus_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 52180
+   },
+   "priority_by_partition": [],
+   "profile": [
+    "NOT_SET"
+   ],
+   "qos": "aisc",
+   "reboot": false,
+   "required_nodes": "",
+   "required_switches": 0,
+   "requeue": true,
+   "resize_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "restart_cnt": 0,
+   "resv_name": "",
+   "scheduled_nodes": "gx08",
+   "segment_size": 0,
+   "selinux_context": "",
+   "shared": [],
+   "step_id": {
+    "sluid": "sC1NM5M6S4J100",
+    "job_id": {
+     "set": true,
+     "infinite": false,
+     "number": 2764153
+    },
+    "step_het_component": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "step_id": "entire"
+   },
+   "sockets_per_board": 0,
+   "sockets_per_node": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1793311255
+   },
+   "state_description": "ReqNodeNotAvail, UnavailableNodes:gx14",
+   "state_reason": "ReqNodeNotAvail",
+   "standard_input": "",
+   "standard_output": "",
+   "standard_error": "",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "submit_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792753308
+   },
+   "submit_line": "",
+   "suspend_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "system_comment": "",
+   "time_limit": {
+    "set": true,
+    "infinite": false,
+    "number": 4320
+   },
+   "time_minimum": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "threads_per_core": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "tres_bind": "",
+   "tres_freq": "",
+   "tres_per_job": "gres/gpu:4",
+   "tres_per_node": "",
+   "tres_per_socket": "",
+   "tres_per_task": "cpu=32",
+   "tres_req_str": "cpu=32,mem=256G,node=1,billing=4096,gres/gpu=4",
+   "tres_alloc_str": "",
+   "user_id": 1000,
+   "user_name": "bob",
+   "maximum_switch_wait_time": 0,
+   "wckey": "",
+   "current_working_directory": ""
+  },
+  {
+   "account": "aisc",
+   "accrue_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "admin_comment": "",
+   "allocating_node": "",
+   "array_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 2526617
+   },
+   "array_task_id": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "array_max_tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 4
+   },
+   "array_task_string": "0-47%4",
+   "association_id": 1,
+   "batch_features": "",
+   "batch_flag": true,
+   "batch_host": "",
+   "flags": [
+    "EXACT_CPU_COUNT_REQUESTED",
+    "EXACT_MEMORY_REQUESTED",
+    "USING_DEFAULT_QOS",
+    "USING_DEFAULT_WCKEY",
+    "DEPENDENT"
+   ],
+   "burst_buffer": "",
+   "burst_buffer_state": "",
+   "cluster": "cluster",
+   "cluster_features": "",
+   "command": "",
+   "comment": "",
+   "container": "",
+   "container_id": "",
+   "container_type": "",
+   "contiguous": false,
+   "core_spec": 0,
+   "thread_spec": 32766,
+   "cores_per_socket": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "billable_tres": {
+    "set": false,
+    "infinite": false,
+    "number": 0.0
+   },
+   "cpus_per_task": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "cpu_frequency_minimum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_maximum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_governor": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus_per_tres": "",
+   "cron": "",
+   "deadline": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "delay_boot": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "dependency": "afterok:2526615_*(failed)",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "eligible_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "excluded_nodes": "",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "features": "",
+   "federation_origin": "",
+   "federation_siblings_active": "",
+   "federation_siblings_viable": "",
+   "gres_detail": [],
+   "group_id": 100,
+   "group_name": "users",
+   "het_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "het_job_id_set": "",
+   "het_job_offset": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "job_id": 2526617,
+   "job_resources": null,
+   "job_size_str": [],
+   "job_state": [
+    "PENDING"
+   ],
+   "last_sched_evaluation": {
+    "set": true,
+    "infinite": false,
+    "number": 1788974883
+   },
+   "licenses": "",
+   "licenses_allocated": "",
+   "mail_type": [],
+   "mail_user": "",
+   "max_cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "max_nodes": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "mcs_label": "",
+   "memory_per_tres": "",
+   "memory_update_delay": 0,
+   "memory_update_margin": 0,
+   "name": "",
+   "network": "",
+   "nodes": "",
+   "nice": 0,
+   "tasks_per_core": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_tres": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_socket": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_board": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "node_count": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "partition": "pot-hpi-aisc-batch",
+   "prefer": "",
+   "memory_per_cpu": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "memory_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 49152
+   },
+   "minimum_cpus_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "minimum_tmp_disk_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preempt_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preemptable_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "pre_sus_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 52173
+   },
+   "priority_by_partition": [],
+   "profile": [
+    "NOT_SET"
+   ],
+   "qos": "aisc",
+   "reboot": false,
+   "required_nodes": "",
+   "required_switches": 0,
+   "requeue": true,
+   "resize_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "restart_cnt": 0,
+   "resv_name": "",
+   "scheduled_nodes": "",
+   "segment_size": 0,
+   "selinux_context": "",
+   "shared": [],
+   "step_id": {
+    "sluid": "s000000004CH3Q",
+    "job_id": {
+     "set": true,
+     "infinite": false,
+     "number": 2526617
+    },
+    "step_het_component": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "step_id": "entire"
+   },
+   "sockets_per_board": 0,
+   "sockets_per_node": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "state_description": "",
+   "state_reason": "DependencyNeverSatisfied",
+   "standard_input": "",
+   "standard_output": "",
+   "standard_error": "",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "submit_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1788974883
+   },
+   "submit_line": "",
+   "suspend_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "system_comment": "",
+   "time_limit": {
+    "set": true,
+    "infinite": false,
+    "number": 360
+   },
+   "time_minimum": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "threads_per_core": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "tres_bind": "",
+   "tres_freq": "",
+   "tres_per_job": "gres/gpu:a30:1",
+   "tres_per_node": "",
+   "tres_per_socket": "",
+   "tres_per_task": "cpu=8",
+   "tres_req_str": "cpu=8,mem=48G,node=1,billing=1000,gres/gpu=1,gres/gpu:a30=1",
+   "tres_alloc_str": "",
+   "user_id": 1000,
+   "user_name": "carol",
+   "maximum_switch_wait_time": 0,
+   "wckey": "",
+   "current_working_directory": ""
+  },
+  {
+   "account": "chair-a",
+   "accrue_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "admin_comment": "",
+   "allocating_node": "",
+   "array_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_id": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "array_max_tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "array_task_string": "",
+   "association_id": 1,
+   "batch_features": "",
+   "batch_flag": true,
+   "batch_host": "",
+   "flags": [
+    "EXACT_CPU_COUNT_REQUESTED",
+    "EXACT_MEMORY_REQUESTED",
+    "USING_DEFAULT_WCKEY",
+    "DEPENDENT"
+   ],
+   "burst_buffer": "",
+   "burst_buffer_state": "",
+   "cluster": "cluster",
+   "cluster_features": "",
+   "command": "",
+   "comment": "",
+   "container": "",
+   "container_id": "",
+   "container_type": "",
+   "contiguous": false,
+   "core_spec": 0,
+   "thread_spec": 32766,
+   "cores_per_socket": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "billable_tres": {
+    "set": false,
+    "infinite": false,
+    "number": 0.0
+   },
+   "cpus_per_task": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "cpu_frequency_minimum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_maximum": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpu_frequency_governor": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus_per_tres": "",
+   "cron": "",
+   "deadline": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "delay_boot": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "dependency": "afterok:2716702(failed)",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "eligible_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "excluded_nodes": "",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "features": "ARCH:X86&[GPU_MEM:80GB|GPU_MEM:96GB|GPU_MEM:192GB]",
+   "federation_origin": "",
+   "federation_siblings_active": "",
+   "federation_siblings_viable": "",
+   "gres_detail": [],
+   "group_id": 100,
+   "group_name": "users",
+   "het_job_id": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "het_job_id_set": "",
+   "het_job_offset": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "job_id": 2716968,
+   "job_resources": null,
+   "job_size_str": [],
+   "job_state": [
+    "PENDING"
+   ],
+   "last_sched_evaluation": {
+    "set": true,
+    "infinite": false,
+    "number": 1792454172
+   },
+   "licenses": "",
+   "licenses_allocated": "",
+   "mail_type": [],
+   "mail_user": "",
+   "max_cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "max_nodes": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "mcs_label": "",
+   "memory_per_tres": "",
+   "memory_update_delay": 0,
+   "memory_update_margin": 0,
+   "name": "",
+   "network": "",
+   "nodes": "",
+   "nice": 0,
+   "tasks_per_core": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_tres": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "tasks_per_socket": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "tasks_per_board": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "cpus": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "node_count": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "tasks": {
+    "set": true,
+    "infinite": false,
+    "number": 1
+   },
+   "partition": "pot-hpi-gpu-batch,pot-hpi-aisc-batch",
+   "prefer": "",
+   "memory_per_cpu": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "memory_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 98304
+   },
+   "minimum_cpus_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 8
+   },
+   "minimum_tmp_disk_per_node": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preempt_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "preemptable_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "pre_sus_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 4296
+   },
+   "priority_by_partition": [
+    {
+     "partition": "pot-hpi-gpu-batch",
+     "priority": 4296
+    },
+    {
+     "partition": "pot-hpi-aisc-batch",
+     "priority": 4287
+    }
+   ],
+   "profile": [
+    "NOT_SET"
+   ],
+   "qos": "normal",
+   "reboot": false,
+   "required_nodes": "",
+   "required_switches": 0,
+   "requeue": true,
+   "resize_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "restart_cnt": 0,
+   "resv_name": "",
+   "scheduled_nodes": "",
+   "segment_size": 0,
+   "selinux_context": "",
+   "shared": [],
+   "step_id": {
+    "sluid": "sC1NM5B9G7NQ00",
+    "job_id": {
+     "set": true,
+     "infinite": false,
+     "number": 2716968
+    },
+    "step_het_component": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "step_id": "entire"
+   },
+   "sockets_per_board": 0,
+   "sockets_per_node": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "state_description": "",
+   "state_reason": "DependencyNeverSatisfied",
+   "standard_input": "",
+   "standard_output": "",
+   "standard_error": "",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "submit_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1792454172
+   },
+   "submit_line": "",
+   "suspend_time": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "system_comment": "",
+   "time_limit": {
+    "set": true,
+    "infinite": false,
+    "number": 720
+   },
+   "time_minimum": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "threads_per_core": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   },
+   "tres_bind": "",
+   "tres_freq": "",
+   "tres_per_job": "",
+   "tres_per_node": "gres/gpu:1",
+   "tres_per_socket": "",
+   "tres_per_task": "cpu=8",
+   "tres_req_str": "cpu=8,mem=96G,node=1,billing=1536,gres/gpu=1",
+   "tres_alloc_str": "",
+   "user_id": 1000,
+   "user_name": "dave",
+   "maximum_switch_wait_time": 0,
+   "wckey": "",
+   "current_working_directory": ""
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}
