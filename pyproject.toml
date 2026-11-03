@@ -6,6 +6,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["click", "httpx", "psycopg[binary]", "sqlalchemy"]
 
+[project.scripts]
+slurm-lens = "slurm_lens.cli:main"
+
 [dependency-groups]
 dev = ["pytest", "ruff"]
 

@@ -1,6 +1,7 @@
 """Periodic collection: live queue and configuration."""
 
 import logging
+import time
 from datetime import UTC, datetime
 
 from . import slurm
@@ -28,6 +29,12 @@ class Collector:
         self.config = config
         self.store = store
         self.transport = transport  # tests replace the network here
+
+    def forever(self) -> None:
+        while True:
+            started = time.monotonic()
+            self.run()
+            time.sleep(max(0.0, self.config.interval.total_seconds() - time.monotonic() + started))
 
     def run(self, now: datetime | None = None) -> None:
         self.now = now or datetime.now(UTC)
