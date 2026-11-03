@@ -42,3 +42,14 @@ def test_token_from_environment_without_token_file(tmp_path, monkeypatch):
     path.write_text(INI.replace("token_file = {token}\n", ""))
     monkeypatch.setenv("SLURM_JWT", "from-env")
     assert Config.load(path).token() == "from-env"
+
+
+def test_database_password_from_environment(config, monkeypatch):
+    monkeypatch.setenv("SLURM_LENS_DB_PASSWORD", "pw")
+    assert config.database().password == "pw"
+    assert config.database().host == "db"
+
+
+def test_database_url_can_be_overridden(config, monkeypatch):
+    monkeypatch.setenv("SLURM_LENS_DATABASE_URL", "postgresql+psycopg://lens@localhost/lens")
+    assert config.database().host == "localhost"

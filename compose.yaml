@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: slurm_lens
+      POSTGRES_DB: slurm_lens
+      POSTGRES_PASSWORD: ${SLURM_LENS_DB_PASSWORD:?set SLURM_LENS_DB_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+    # only reachable from the host itself (psql, backups, ssh tunnel)
+    ports:
+      - 127.0.0.1:5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "slurm_lens"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  db:
