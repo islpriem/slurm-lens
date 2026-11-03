@@ -4,8 +4,8 @@ from datetime import datetime
 from typing import Any
 
 from sqlalchemy import ARRAY, BigInteger, DateTime, ForeignKey, Integer
-from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.dialects.postgresql import JSONB, insert
+from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
 
 class Base(DeclarativeBase):
@@ -16,6 +16,27 @@ class Base(DeclarativeBase):
         Any: JSONB,
         list[int]: ARRAY(Integer),
     }
+
+    @classmethod
+    def upsert(cls, session: Session, rows: list[dict], update=()) -> None:
+        """Bulk insert; on a key conflict update the given columns or keep the existing row."""
+        if not rows:
+            return
+        statement = insert(cls)
+        keys = [column.name for column in cls.__table__.primary_key]
+        if update:
+            changes = {column: statement.excluded[column] for column in update}
+            statement = statement.on_conflict_do_update(index_elements=keys, set_=changes)
+        else:
+            statement = statement.on_conflict_do_nothing(index_elements=keys)
+        session.execute(statement, rows)
+
+    @classmethod
+    def columns(cls, *exclude: str) -> list[str]:
+        """Names of the non-key columns, e.g. for upsert()."""
+        return [
+            c.name for c in cls.__table__.columns if not c.primary_key and c.name not in exclude
+        ]
 
 
 class Snapshot(Base):
