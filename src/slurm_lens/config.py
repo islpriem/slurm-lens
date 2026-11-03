@@ -15,6 +15,7 @@ class Config:
     token_file: Path | None
     database_url: str
     interval: timedelta
+    fairshare_interval: timedelta
 
     @classmethod
     def load(cls, path: Path) -> "Config":
@@ -28,6 +29,7 @@ class Config:
             token_file=Path(token_file) if token_file else None,
             database_url=ini["database"]["url"],
             interval=timedelta(minutes=collector.getfloat("interval_minutes", 5)),
+            fairshare_interval=timedelta(minutes=collector.getfloat("fairshare_minutes", 60)),
         )
 
     def token(self) -> str:

@@ -177,3 +177,21 @@ class NodeSnapshot(Base):
     cpu_load: Mapped[int | None]
     gpus_used: Mapped[int]
     gpu_idx_used: Mapped[list[int]]
+
+
+class FairshareSnapshot(Base):
+    """The fairshare tree (sshare) of one snapshot."""
+
+    __tablename__ = "fairshare_snapshot"
+    snapshot_id: Mapped[int] = mapped_column(ForeignKey("snapshot.id"), primary_key=True)
+    assoc_id: Mapped[int] = mapped_column(primary_key=True)
+    type: Mapped[str]  # USER or ASSOCIATION (account)
+    name: Mapped[str]
+    parent: Mapped[str | None]
+    shares: Mapped[int | None]
+    shares_normalized: Mapped[float | None]
+    usage_raw: Mapped[int]  # decayed usage
+    effective_usage: Mapped[float | None]
+    fairshare_factor: Mapped[float | None]
+    fairshare_level: Mapped[float | None]
+    tres_usage: Mapped[dict]  # decayed usage per TRES, non-zero only

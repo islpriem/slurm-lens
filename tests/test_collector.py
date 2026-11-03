@@ -10,6 +10,7 @@ from slurm_lens.config import Config
 from slurm_lens.models import (
     ApiCall,
     ConfigVersion,
+    FairshareSnapshot,
     JobAllocation,
     JobSnapshot,
     NodeSnapshot,
@@ -18,6 +19,7 @@ from slurm_lens.models import (
 from slurm_lens.slurm import PATHS
 
 NOW = datetime(2026, 11, 5, 10, 0, tzinfo=UTC)
+HOUR = timedelta(hours=1)
 
 
 def config(**changes):
@@ -26,6 +28,7 @@ def config(**changes):
         token_file=None,
         database_url="",
         interval=timedelta(minutes=5),
+        fairshare_interval=HOUR,
     )
     return Config(**(values | changes))
 
@@ -58,7 +61,7 @@ def count(session, model, *where):
     return session.scalar(select(func.count()).select_from(model).where(*where))
 
 
-def test_run_stores_queue_nodes_and_configuration(collect, session):
+def test_run_stores_queue_nodes_configuration_and_fairshare(collect, session):
     collect()
     snapshot = session.scalars(select(Snapshot)).one()
     assert (snapshot.status, snapshot.error) == ("ok", None)
@@ -66,6 +69,7 @@ def test_run_stores_queue_nodes_and_configuration(collect, session):
     assert count(session, JobSnapshot) == len(payload("jobs")["jobs"])
     assert count(session, JobAllocation) >= 1
     assert count(session, NodeSnapshot) == len(payload("nodes")["nodes"])
+    assert count(session, FairshareSnapshot) == len(payload("shares")["shares"]["shares"])
     kinds = set(session.scalars(select(ConfigVersion.kind).distinct()))
     assert kinds == {"slurm_conf", "node", "partition", "reservation", "qos", "tres", "association"}
 
@@ -77,6 +81,7 @@ def test_second_run_adds_a_snapshot_but_no_new_versions(collect, session):
     assert count(session, Snapshot) == 2
     assert count(session, JobSnapshot) == 2 * len(payload("jobs")["jobs"])
     assert count(session, ConfigVersion) == versions
+    assert count(session, FairshareSnapshot) == len(payload("shares")["shares"]["shares"])  # hourly
 
 
 def test_a_failing_endpoint_does_not_stop_the_run(collect, session):

@@ -1,0 +1,2133 @@
+{
+ "shares": {
+  "shares": [
+   {
+    "id": 1,
+    "cluster": "cluster",
+    "name": "root",
+    "parent": "",
+    "partition": "",
+    "shares_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 2.3283064376228985e-10
+    },
+    "shares": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "tres": {
+     "run_seconds": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 285330190
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 1978473137600
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 14791910
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 34386454436
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 20939291
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 5327501
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 363882
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 381895
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 96382
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 11338885
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 2952
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 3427794
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      }
+     ],
+     "group_minutes": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     ],
+     "usage": [
+      {
+       "name": "cpu",
+       "value": 3184327048.751911
+      },
+      {
+       "name": "mem",
+       "value": 20558433856698.11
+      },
+      {
+       "name": "energy",
+       "value": 0.0
+      },
+      {
+       "name": "node",
+       "value": 235687102.645952
+      },
+      {
+       "name": "billing",
+       "value": 377255374256.97473
+      },
+      {
+       "name": "fs/disk",
+       "value": 0.0
+      },
+      {
+       "name": "vmem",
+       "value": 0.0
+      },
+      {
+       "name": "pages",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu",
+       "value": 197851606.246136
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": 356671.8796
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": 35590762.696124
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": 4530299.630324
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": 3075968.678757
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": 10351744.224786
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": 873443.606222
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": 79725089.118484
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": 260923.648362
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": 3173964.341993
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": 40833801.751279
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpumem",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": 0.0
+      },
+      {
+       "name": "ic/ofed",
+       "value": 0.0
+      }
+     ]
+    },
+    "effective_usage": {
+     "set": true,
+     "infinite": false,
+     "number": 1.0
+    },
+    "usage_normalized": {
+     "set": false,
+     "infinite": false,
+     "number": 0.0
+    },
+    "usage": 377259149610,
+    "fairshare": {
+     "factor": {
+      "set": true,
+      "infinite": false,
+      "number": 0.0
+     },
+     "level": {
+      "set": false,
+      "infinite": false,
+      "number": 0.0
+     }
+    },
+    "type": [
+     "ASSOCIATION"
+    ]
+   },
+   {
+    "id": 1070,
+    "cluster": "cluster",
+    "name": "aisc",
+    "parent": "root",
+    "partition": "",
+    "shares_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 0.2
+    },
+    "shares": {
+     "set": true,
+     "infinite": false,
+     "number": 1
+    },
+    "tres": {
+     "run_seconds": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 95664576
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 913994526720
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 3248159
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 14295483640
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 11702767
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 363882
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 11338885
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      }
+     ],
+     "group_minutes": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     ],
+     "usage": [
+      {
+       "name": "cpu",
+       "value": 1050982748.488867
+      },
+      {
+       "name": "mem",
+       "value": 8210803599118.405
+      },
+      {
+       "name": "energy",
+       "value": 0.0
+      },
+      {
+       "name": "node",
+       "value": 49475410.003591
+      },
+      {
+       "name": "billing",
+       "value": 136850382189.23885
+      },
+      {
+       "name": "fs/disk",
+       "value": 0.0
+      },
+      {
+       "name": "vmem",
+       "value": 0.0
+      },
+      {
+       "name": "pages",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu",
+       "value": 93625273.251196
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": 4420871.514696
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": 79475857.845248
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": 260922.397801
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpumem",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": 0.0
+      },
+      {
+       "name": "ic/ofed",
+       "value": 0.0
+      }
+     ]
+    },
+    "effective_usage": {
+     "set": true,
+     "infinite": false,
+     "number": 0.362749212260069
+    },
+    "usage_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 0.362749212260069
+    },
+    "usage": 136850459339,
+    "fairshare": {
+     "factor": {
+      "set": true,
+      "infinite": false,
+      "number": 0.0
+     },
+     "level": {
+      "set": true,
+      "infinite": false,
+      "number": 0.5513450980470006
+     }
+    },
+    "type": [
+     "ASSOCIATION"
+    ]
+   },
+   {
+    "id": 2456,
+    "cluster": "cluster",
+    "name": "frank",
+    "parent": "aisc",
+    "partition": "",
+    "shares_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 0.0035587188612099642
+    },
+    "shares": {
+     "set": true,
+     "infinite": false,
+     "number": 1
+    },
+    "tres": {
+     "run_seconds": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      }
+     ],
+     "group_minutes": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     ],
+     "usage": [
+      {
+       "name": "cpu",
+       "value": 1.111792
+      },
+      {
+       "name": "mem",
+       "value": 2276.949136
+      },
+      {
+       "name": "energy",
+       "value": 0.0
+      },
+      {
+       "name": "node",
+       "value": 0.555896
+      },
+      {
+       "name": "billing",
+       "value": 555.895785
+      },
+      {
+       "name": "fs/disk",
+       "value": 0.0
+      },
+      {
+       "name": "vmem",
+       "value": 0.0
+      },
+      {
+       "name": "pages",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu",
+       "value": 0.555896
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": 0.555896
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpumem",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": 0.0
+      },
+      {
+       "name": "ic/ofed",
+       "value": 0.0
+      }
+     ]
+    },
+    "effective_usage": {
+     "set": true,
+     "infinite": false,
+     "number": 4.062067368732321e-09
+    },
+    "usage_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 1.4735117381549806e-09
+    },
+    "usage": 555,
+    "fairshare": {
+     "factor": {
+      "set": true,
+      "infinite": false,
+      "number": 0.4517948717948718
+     },
+     "level": {
+      "set": true,
+      "infinite": false,
+      "number": 876085.6327994777
+     }
+    },
+    "type": [
+     "USER"
+    ]
+   },
+   {
+    "id": 2647,
+    "cluster": "cluster",
+    "name": "grace",
+    "parent": "aisc",
+    "partition": "",
+    "shares_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 0.0035587188612099642
+    },
+    "shares": {
+     "set": true,
+     "infinite": false,
+     "number": 1
+    },
+    "tres": {
+     "run_seconds": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": true,
+        "infinite": false,
+        "number": 0
+       }
+      }
+     ],
+     "group_minutes": [
+      {
+       "name": "cpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "mem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "energy",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "node",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "billing",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "fs/disk",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "vmem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "pages",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpumem",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      },
+      {
+       "name": "ic/ofed",
+       "value": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     ],
+     "usage": [
+      {
+       "name": "cpu",
+       "value": 665.916317
+      },
+      {
+       "name": "mem",
+       "value": 2727593.234762
+      },
+      {
+       "name": "energy",
+       "value": 0.0
+      },
+      {
+       "name": "node",
+       "value": 83.239539
+      },
+      {
+       "name": "billing",
+       "value": 83239.539635
+      },
+      {
+       "name": "fs/disk",
+       "value": 0.0
+      },
+      {
+       "name": "vmem",
+       "value": 0.0
+      },
+      {
+       "name": "pages",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu",
+       "value": 83.239539
+      },
+      {
+       "name": "gres/gpu:2080",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:2080_ti",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a100",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:a30",
+       "value": 83.239539
+      },
+      {
+       "name": "gres/gpu:a40",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:b200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:gh200",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:h100",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:l40",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:mi300a",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:rtx_pro_6000",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpu:t4",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpumem",
+       "value": 0.0
+      },
+      {
+       "name": "gres/gpuutil",
+       "value": 0.0
+      },
+      {
+       "name": "ic/ofed",
+       "value": 0.0
+      }
+     ]
+    },
+    "effective_usage": {
+     "set": true,
+     "infinite": false,
+     "number": 6.082518103125884e-07
+    },
+    "usage_normalized": {
+     "set": true,
+     "infinite": false,
+     "number": 2.2064286504665234e-07
+    },
+    "usage": 83239,
+    "fairshare": {
+     "factor": {
+      "set": true,
+      "infinite": false,
+      "number": 0.44564102564102565
+     },
+     "level": {
+      "set": true,
+      "infinite": false,
+      "number": 5850.732872264028
+     }
+    },
+    "type": [
+     "USER"
+    ]
+   }
+  ],
+  "total_shares": 0
+ },
+ "errors": [],
+ "warnings": []
+}

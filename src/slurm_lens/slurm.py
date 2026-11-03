@@ -12,6 +12,7 @@ PATHS = {
     "conf": f"/slurm/{VERSION}/conf",
     "partitions": f"/slurm/{VERSION}/partitions/",
     "reservations": f"/slurm/{VERSION}/reservations/",
+    "shares": f"/slurm/{VERSION}/shares",
     "qos": f"/slurmdb/{VERSION}/qos/",
     "tres": f"/slurmdb/{VERSION}/tres/",
     "associations": f"/slurmdb/{VERSION}/associations/",
@@ -167,6 +168,23 @@ def config_items(kind: str, data: dict) -> dict[str, Any]:
     # associations carry usage counters, which are not configuration
     return {
         str(item[name]): {k: v for k, v in item.items() if k != "accounting"} for item in data[key]
+    }
+
+
+def share_row(s: dict, snapshot_id: int) -> dict:
+    return {
+        "snapshot_id": snapshot_id,
+        "assoc_id": s["id"],
+        "type": join(s["type"]),
+        "name": s["name"],
+        "parent": s["parent"] or None,
+        "shares": num(s["shares"]),
+        "shares_normalized": num(s["shares_normalized"]),
+        "usage_raw": s["usage"],
+        "effective_usage": num(s["effective_usage"]),
+        "fairshare_factor": num(s["fairshare"]["factor"]),
+        "fairshare_level": num(s["fairshare"]["level"]),
+        "tres_usage": {t["name"]: num(t["value"]) for t in s["tres"]["usage"] if num(t["value"])},
     }
 
 

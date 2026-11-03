@@ -14,6 +14,7 @@ url = postgresql+psycopg://lens@db:5432/lens  ; password comes from the environm
 
 [collector]
 interval_minutes = 5
+fairshare_minutes = 60
 """
 
 
@@ -29,6 +30,7 @@ def config(tmp_path):
 def test_load(config):
     assert config.slurm_url == "https://slurm.example.org"
     assert config.interval == timedelta(minutes=5)
+    assert config.fairshare_interval == timedelta(hours=1)
 
 
 def test_token_is_read_from_the_file_each_time(config):

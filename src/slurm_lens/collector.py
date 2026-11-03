@@ -1,8 +1,10 @@
-"""Periodic collection: live queue and configuration."""
+"""Periodic collection: live queue, configuration and fairshare."""
 
 import logging
 import time
 from datetime import UTC, datetime
+
+from sqlalchemy import func, select
 
 from . import slurm
 from .client import SlurmClient
@@ -10,6 +12,7 @@ from .config import Config
 from .models import (
     ApiCall,
     ConfigVersion,
+    FairshareSnapshot,
     Job,
     JobAllocation,
     JobSnapshot,
@@ -43,7 +46,7 @@ class Collector:
             session.add(snapshot)
             session.flush()
             self.snapshot_id = snapshot.id
-        steps = [self.queue, self.nodes, self.slurm_config, self.accounting_config]
+        steps = [self.queue, self.nodes, self.slurm_config, self.accounting_config, self.fairshare]
         errors = []
         self.client = self._client()
         for step in steps:
@@ -114,3 +117,18 @@ class Collector:
             for kind, values in kinds.items():
                 if changed := ConfigVersion.record(session, kind, values, self.now):
                     log.info("%s: %d changes", kind, changed)
+
+    def fairshare(self) -> None:
+        with self.store.session() as session:
+            last = session.scalar(
+                select(Snapshot.taken_at).where(
+                    Snapshot.id == select(func.max(FairshareSnapshot.snapshot_id)).scalar_subquery()
+                )
+            )
+        if last and self.now - last < self.config.fairshare_interval:
+            return
+        shares = self.fetch("shares")["shares"]["shares"]
+        with self.store.session.begin() as session:
+            FairshareSnapshot.upsert(
+                session, [slurm.share_row(s, self.snapshot_id) for s in shares]
+            )
