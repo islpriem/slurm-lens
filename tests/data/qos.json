@@ -1,0 +1,664 @@
+{
+ "qos": [
+  {
+   "description": "Normal QOS default",
+   "flags": [],
+   "id": 1,
+   "limits": {
+    "grace_time": 0,
+    "max": {
+     "active_jobs": {
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "jobs": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "active_jobs": {
+       "per": {
+        "account": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        },
+        "user": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        }
+       }
+      },
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "tres": {
+      "total": [],
+      "minutes": {
+       "total": [],
+       "per": {
+        "qos": [],
+        "job": [],
+        "account": [],
+        "user": []
+       }
+      },
+      "per": {
+       "account": [],
+       "job": [],
+       "node": [],
+       "user": [
+        {
+         "type": "cpu",
+         "name": "",
+         "id": 1,
+         "count": 1024
+        },
+        {
+         "type": "mem",
+         "name": "",
+         "id": 2,
+         "count": 2105344
+        },
+        {
+         "type": "gres",
+         "name": "gpu",
+         "id": 1001,
+         "count": 16
+        }
+       ]
+      }
+     },
+     "wall_clock": {
+      "per": {
+       "qos": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "job": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "accruing": {
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     }
+    },
+    "factor": {
+     "set": false,
+     "infinite": true,
+     "number": 0.0
+    },
+    "min": {
+     "priority_threshold": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "tres": {
+      "per": {
+       "job": []
+      }
+     }
+    }
+   },
+   "name": "normal",
+   "preempt": {
+    "list": [],
+    "mode": [
+     "DISABLED"
+    ],
+    "exempt_time": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 100
+   },
+   "usage_factor": {
+    "set": true,
+    "infinite": false,
+    "number": 1.0
+   },
+   "usage_threshold": {
+    "set": false,
+    "infinite": true,
+    "number": 0.0
+   }
+  },
+  {
+   "description": "early-access",
+   "flags": [],
+   "id": 4,
+   "limits": {
+    "grace_time": 0,
+    "max": {
+     "active_jobs": {
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "jobs": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "active_jobs": {
+       "per": {
+        "account": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        },
+        "user": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        }
+       }
+      },
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "tres": {
+      "total": [],
+      "minutes": {
+       "total": [],
+       "per": {
+        "qos": [],
+        "job": [],
+        "account": [],
+        "user": []
+       }
+      },
+      "per": {
+       "account": [],
+       "job": [],
+       "node": [],
+       "user": [
+        {
+         "type": "cpu",
+         "name": "",
+         "id": 1,
+         "count": 1024
+        },
+        {
+         "type": "mem",
+         "name": "",
+         "id": 2,
+         "count": 2105344
+        },
+        {
+         "type": "gres",
+         "name": "gpu",
+         "id": 1001,
+         "count": 16
+        }
+       ]
+      }
+     },
+     "wall_clock": {
+      "per": {
+       "qos": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "job": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "accruing": {
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     }
+    },
+    "factor": {
+     "set": false,
+     "infinite": true,
+     "number": 0.0
+    },
+    "min": {
+     "priority_threshold": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "tres": {
+      "per": {
+       "job": []
+      }
+     }
+    }
+   },
+   "name": "early-access",
+   "preempt": {
+    "list": [],
+    "mode": [
+     "DISABLED"
+    ],
+    "exempt_time": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 100
+   },
+   "usage_factor": {
+    "set": true,
+    "infinite": false,
+    "number": 1.0
+   },
+   "usage_threshold": {
+    "set": false,
+    "infinite": true,
+    "number": 0.0
+   }
+  },
+  {
+   "description": "high",
+   "flags": [],
+   "id": 5,
+   "limits": {
+    "grace_time": 0,
+    "max": {
+     "active_jobs": {
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "jobs": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "active_jobs": {
+       "per": {
+        "account": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        },
+        "user": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        }
+       }
+      },
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "tres": {
+      "total": [],
+      "minutes": {
+       "total": [],
+       "per": {
+        "qos": [],
+        "job": [],
+        "account": [],
+        "user": []
+       }
+      },
+      "per": {
+       "account": [],
+       "job": [],
+       "node": [],
+       "user": [
+        {
+         "type": "cpu",
+         "name": "",
+         "id": 1,
+         "count": 1024
+        },
+        {
+         "type": "mem",
+         "name": "",
+         "id": 2,
+         "count": 2105344
+        },
+        {
+         "type": "gres",
+         "name": "gpu",
+         "id": 1001,
+         "count": 16
+        }
+       ]
+      }
+     },
+     "wall_clock": {
+      "per": {
+       "qos": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "job": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "accruing": {
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     }
+    },
+    "factor": {
+     "set": false,
+     "infinite": true,
+     "number": 0.0
+    },
+    "min": {
+     "priority_threshold": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "tres": {
+      "per": {
+       "job": []
+      }
+     }
+    }
+   },
+   "name": "high",
+   "preempt": {
+    "list": [],
+    "mode": [
+     "DISABLED"
+    ],
+    "exempt_time": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 200
+   },
+   "usage_factor": {
+    "set": true,
+    "infinite": false,
+    "number": 1.0
+   },
+   "usage_threshold": {
+    "set": false,
+    "infinite": true,
+    "number": 0.0
+   }
+  },
+  {
+   "description": "aisc",
+   "flags": [],
+   "id": 26,
+   "limits": {
+    "grace_time": 0,
+    "max": {
+     "active_jobs": {
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "jobs": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "active_jobs": {
+       "per": {
+        "account": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        },
+        "user": {
+         "set": false,
+         "infinite": true,
+         "number": 0
+        }
+       }
+      },
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "tres": {
+      "total": [],
+      "minutes": {
+       "total": [],
+       "per": {
+        "qos": [],
+        "job": [],
+        "account": [],
+        "user": []
+       }
+      },
+      "per": {
+       "account": [],
+       "job": [],
+       "node": [],
+       "user": [
+        {
+         "type": "cpu",
+         "name": "",
+         "id": 1,
+         "count": 1024
+        },
+        {
+         "type": "mem",
+         "name": "",
+         "id": 2,
+         "count": 2105344
+        },
+        {
+         "type": "gres",
+         "name": "gpu",
+         "id": 1001,
+         "count": 16
+        }
+       ]
+      }
+     },
+     "wall_clock": {
+      "per": {
+       "qos": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "job": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     },
+     "accruing": {
+      "per": {
+       "account": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       },
+       "user": {
+        "set": false,
+        "infinite": true,
+        "number": 0
+       }
+      }
+     }
+    },
+    "factor": {
+     "set": false,
+     "infinite": true,
+     "number": 0.0
+    },
+    "min": {
+     "priority_threshold": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "tres": {
+      "per": {
+       "job": []
+      }
+     }
+    }
+   },
+   "name": "aisc",
+   "preempt": {
+    "list": [
+     "normal"
+    ],
+    "mode": [
+     "DISABLED"
+    ],
+    "exempt_time": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 300
+   },
+   "usage_factor": {
+    "set": true,
+    "infinite": false,
+    "number": 1.0
+   },
+   "usage_threshold": {
+    "set": false,
+    "infinite": true,
+    "number": 0.0
+   }
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

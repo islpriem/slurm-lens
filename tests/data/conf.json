@@ -1,0 +1,71 @@
+{
+ "slurm_conf": {
+  "DefMemPerCPU": {
+   "set": true,
+   "infinite": false,
+   "number": 1536
+  },
+  "GresTypes": [
+   "gpu",
+   "mps"
+  ],
+  "JobDefaults": [
+   {
+    "type": [
+     "DefCpuPerGPU"
+    ],
+    "value": 4
+   }
+  ],
+  "PreemptExemptTime": {
+   "set": true,
+   "infinite": false,
+   "number": 0
+  },
+  "PreemptMode": [
+   "REQUEUE"
+  ],
+  "PreemptParameters": [],
+  "PreemptType": "preempt/qos",
+  "PriorityDecayHalfLife": "14-00:00:00",
+  "PriorityCalcPeriod": "00:05:00",
+  "PriorityFavorSmall": false,
+  "PriorityFlags": [
+   "CALCULATE_RUNNING",
+   "FAIR_TREE",
+   "MAX_TRES"
+  ],
+  "PriorityMaxAge": "14-00:00:00",
+  "PriorityParameters": "",
+  "PriorityUsageResetPeriod": "NONE",
+  "PriorityType": "priority/multifactor",
+  "PriorityWeightAge": 10000,
+  "PriorityWeightAssoc": 0,
+  "PriorityWeightFairshare": 100000,
+  "PriorityWeightJobSize": 100000,
+  "PriorityWeightPartition": 10000,
+  "PriorityWeightQOS": 10000,
+  "PriorityWeightTRES": "CPU=1000,Mem=4000,GRES/gpu=5000",
+  "SchedulerParameters": [
+   "defer",
+   "bf_continue",
+   "bf_window=11520",
+   "bf_interval=30",
+   "bf_resolution=300",
+   "bf_max_job_user=1000",
+   "max_rpc_cnt=200",
+   "sched_min_interval=2000000",
+   "sched_max_job_start=1000"
+  ],
+  "SchedulerTimeSlice": 30,
+  "SchedulerType": "sched/backfill",
+  "SelectType": "select/cons_tres",
+  "SelectTypeParameters": [
+   "CR_CORE_MEMORY"
+  ],
+  "PrioritySiteFactorPlugin": "",
+  "PrioritySiteFactorParameters": ""
+ },
+ "errors": [],
+ "warnings": []
+}

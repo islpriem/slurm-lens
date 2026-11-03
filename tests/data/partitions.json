@@ -1,0 +1,272 @@
+{
+ "partitions": [
+  {
+   "nodes": {
+    "allowed_allocation": "",
+    "configured": "ga[01-02],gx[01-02,24-25,28,31-33,35]",
+    "total": 11
+   },
+   "accounts": {
+    "allowed": "",
+    "deny": ""
+   },
+   "groups": {
+    "allowed": ""
+   },
+   "qos": {
+    "allowed": "normal,high",
+    "deny": "",
+    "assigned": ""
+   },
+   "alternate": "",
+   "tres": {
+    "billing_weights": "CPU=62.5,Mem=16G,GRES/gpu=1000",
+    "configured": "cpu=1456,mem=12110867M,node=11,billing=189232,gres/gpu=69,gres/gpu:a100=27,gres/gpu:b200=8,gres/gpu:gh200=2,gres/gpu:rtx_pro_6000=32"
+   },
+   "cluster": "cluster",
+   "select_type": [
+    "NONE"
+   ],
+   "cpus": {
+    "task_binding": [],
+    "total": 1456
+   },
+   "defaults": {
+    "memory_per_cpu": 0,
+    "partition_memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "partition_memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 1440
+    },
+    "job": ""
+   },
+   "flags": [],
+   "partition": {
+    "exclusive": "NO",
+    "oversubscribe": "NO",
+    "state": [
+     "UP"
+    ]
+   },
+   "grace_time": 30,
+   "maximums": {
+    "cpus_per_node": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "cpus_per_socket": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "memory_per_cpu": 0,
+    "partition_memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "partition_memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "nodes": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "shares": 0,
+    "oversubscribe": {
+     "jobs": 0,
+     "flags": []
+    },
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 10080
+    },
+    "over_time_limit": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "minimums": {
+    "nodes": 0
+   },
+   "name": "pot-hpi-gpu-batch",
+   "node_sets": "gpu,gpu-batch",
+   "preempt_mode": [
+    "CLUSTER_GLOBAL"
+   ],
+   "priority": {
+    "job_factor": 100,
+    "tier": 100
+   },
+   "timeouts": {
+    "resume": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "suspend": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "topology": "",
+   "suspend_time": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   }
+  },
+  {
+   "nodes": {
+    "allowed_allocation": "",
+    "configured": "ga03,gx[07-12,14],gx13v1,gx17v1",
+    "total": 10
+   },
+   "accounts": {
+    "allowed": "",
+    "deny": ""
+   },
+   "groups": {
+    "allowed": ""
+   },
+   "qos": {
+    "allowed": "aisc,normal",
+    "deny": "",
+    "assigned": ""
+   },
+   "alternate": "",
+   "tres": {
+    "billing_weights": "CPU=62.5,Mem=16G,GRES/gpu=1000",
+    "configured": "cpu=1916,mem=16411978M,node=10,billing=256437,gres/gpu=68,gres/gpu:a30=6,gres/gpu:h100=60,gres/gpu:l40=2"
+   },
+   "cluster": "cluster",
+   "select_type": [
+    "NONE"
+   ],
+   "cpus": {
+    "task_binding": [],
+    "total": 1916
+   },
+   "defaults": {
+    "memory_per_cpu": 0,
+    "partition_memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "partition_memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 1440
+    },
+    "job": ""
+   },
+   "flags": [],
+   "partition": {
+    "exclusive": "NO",
+    "oversubscribe": "NO",
+    "state": [
+     "UP"
+    ]
+   },
+   "grace_time": 30,
+   "maximums": {
+    "cpus_per_node": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "cpus_per_socket": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "memory_per_cpu": 0,
+    "partition_memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "partition_memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "nodes": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    },
+    "shares": 0,
+    "oversubscribe": {
+     "jobs": 0,
+     "flags": []
+    },
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 10080
+    },
+    "over_time_limit": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "minimums": {
+    "nodes": 0
+   },
+   "name": "pot-hpi-aisc-batch",
+   "node_sets": "aisc,aisc-batch",
+   "preempt_mode": [
+    "CLUSTER_GLOBAL"
+   ],
+   "priority": {
+    "job_factor": 100,
+    "tier": 100
+   },
+   "timeouts": {
+    "resume": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "suspend": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "topology": "",
+   "suspend_time": {
+    "set": false,
+    "infinite": false,
+    "number": 0
+   }
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

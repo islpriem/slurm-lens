@@ -3,9 +3,11 @@
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import ARRAY, BigInteger, DateTime, ForeignKey, Integer
+from sqlalchemy import ARRAY, BigInteger, DateTime, ForeignKey, Index, Integer, or_, select, text
 from sqlalchemy.dialects.postgresql import JSONB, insert
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
+
+REMOVED = object()
 
 
 class Base(DeclarativeBase):
@@ -63,6 +65,48 @@ class ApiCall(Base):
     seconds: Mapped[float]
     items: Mapped[int | None]
     error: Mapped[str | None]
+
+
+class ConfigVersion(Base):
+    """Slowly changing configuration (slurm.conf, partitions, nodes, QOS, ...) with validity."""
+
+    __tablename__ = "config_version"
+    kind: Mapped[str] = mapped_column(primary_key=True)
+    key: Mapped[str] = mapped_column(primary_key=True)
+    valid_from: Mapped[datetime] = mapped_column(primary_key=True)
+    valid_to: Mapped[datetime | None]
+    value: Mapped[Any]
+    __table_args__ = (
+        Index(
+            "config_version_open",
+            "kind",
+            "key",
+            unique=True,
+            postgresql_where=text("valid_to IS NULL"),
+        ),
+    )
+
+    @classmethod
+    def record(cls, session: Session, kind: str, values: dict[str, Any], now: datetime) -> int:
+        """Close changed or removed keys, open new versions; returns the number of changed keys."""
+        query = select(cls).where(cls.kind == kind, cls.valid_to.is_(None))
+        current = {version.key: version for version in session.scalars(query)}
+        changed = [v for key, v in current.items() if values.get(key, REMOVED) != v.value]
+        for version in changed:
+            version.valid_to = now
+        session.flush()  # close first, only one open version per key is allowed
+        opened = [key for key in values if key not in current or current[key] in changed]
+        session.add_all(
+            cls(kind=kind, key=key, value=values[key], valid_from=now) for key in opened
+        )
+        return len({v.key for v in changed} | set(opened))
+
+    @classmethod
+    def at(cls, session: Session, kind: str, time: datetime) -> dict[str, Any]:
+        """The configuration of one kind as it was at the given time."""
+        valid = or_(cls.valid_to.is_(None), cls.valid_to > time)
+        query = select(cls).where(cls.kind == kind, cls.valid_from <= time, valid)
+        return {version.key: version.value for version in session.scalars(query)}
 
 
 class Job(Base):

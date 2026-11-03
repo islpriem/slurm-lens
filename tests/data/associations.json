@@ -1,0 +1,204 @@
+{
+ "associations": [
+  {
+   "accounting": [],
+   "account": "aisc",
+   "cluster": "cluster",
+   "comment": "",
+   "default": {
+    "qos": ""
+   },
+   "flags": [],
+   "max": {
+    "jobs": {
+     "per": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "submitted": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "wall_clock": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "active": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "accruing": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "total": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     }
+    },
+    "tres": {
+     "total": [],
+     "group": {
+      "minutes": [],
+      "active": []
+     },
+     "minutes": {
+      "total": [],
+      "per": {
+       "job": []
+      }
+     },
+     "per": {
+      "job": [],
+      "node": []
+     }
+    },
+    "per": {
+     "account": {
+      "wall_clock": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     }
+    }
+   },
+   "id": 2582,
+   "is_default": false,
+   "lineage": "//aisc/0-erin/",
+   "min": {
+    "priority_threshold": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "parent_account": "",
+   "partition": "",
+   "priority": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "qos": [
+    "aisc"
+   ],
+   "shares_raw": 1,
+   "user": "erin"
+  },
+  {
+   "accounting": [],
+   "account": "chair-b",
+   "cluster": "cluster",
+   "comment": "",
+   "default": {
+    "qos": ""
+   },
+   "flags": [],
+   "max": {
+    "jobs": {
+     "per": {
+      "count": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "accruing": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "submitted": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      },
+      "wall_clock": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     },
+     "active": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "accruing": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     },
+     "total": {
+      "set": false,
+      "infinite": true,
+      "number": 0
+     }
+    },
+    "tres": {
+     "total": [],
+     "group": {
+      "minutes": [],
+      "active": []
+     },
+     "minutes": {
+      "total": [],
+      "per": {
+       "job": []
+      }
+     },
+     "per": {
+      "job": [],
+      "node": []
+     }
+    },
+    "per": {
+     "account": {
+      "wall_clock": {
+       "set": false,
+       "infinite": true,
+       "number": 0
+      }
+     }
+    }
+   },
+   "id": 1072,
+   "is_default": false,
+   "lineage": "//chair-b/0-erin/",
+   "min": {
+    "priority_threshold": {
+     "set": false,
+     "infinite": true,
+     "number": 0
+    }
+   },
+   "parent_account": "",
+   "partition": "",
+   "priority": {
+    "set": false,
+    "infinite": true,
+    "number": 0
+   },
+   "qos": [
+    "aisc"
+   ],
+   "shares_raw": 1,
+   "user": "erin"
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

@@ -1,6 +1,6 @@
 """The slurmrestd endpoints we read and how their responses become database rows."""
 
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from .parse import array_size, gres, index_range, join, num, stamp, tres
 
@@ -9,6 +9,12 @@ PATHS = {
     "jobs": f"/slurm/{VERSION}/jobs/",
     "diag": f"/slurm/{VERSION}/diag/",
     "nodes": f"/slurm/{VERSION}/nodes/",
+    "conf": f"/slurm/{VERSION}/conf",
+    "partitions": f"/slurm/{VERSION}/partitions/",
+    "reservations": f"/slurm/{VERSION}/reservations/",
+    "qos": f"/slurmdb/{VERSION}/qos/",
+    "tres": f"/slurmdb/{VERSION}/tres/",
+    "associations": f"/slurmdb/{VERSION}/associations/",
 }
 ALLOWED = frozenset(PATHS.values())
 
@@ -54,6 +60,15 @@ NODE_STATIC = [
     "tres",
     "version",
 ]
+
+# kinds of configuration: endpoint, list in its response, field that names an item
+CONFIG = {
+    "partition": ("partitions", "partitions", "name"),
+    "reservation": ("reservations", "reservations", "name"),
+    "qos": ("qos", "qos", "name"),
+    "tres": ("tres", "TRES", "id"),
+    "association": ("associations", "associations", "id"),
+}
 
 
 class QueueRows(NamedTuple):
@@ -144,6 +159,15 @@ def node_rows(n: dict, snapshot_id: int) -> tuple[dict, dict]:
         "gpu_idx_used": [i for _, indices in gpus for i in indices],
     }
     return state, {key: n[key] for key in NODE_STATIC}
+
+
+def config_items(kind: str, data: dict) -> dict[str, Any]:
+    """Items of one kind of configuration, keyed by their name."""
+    _, key, name = CONFIG[kind]
+    # associations carry usage counters, which are not configuration
+    return {
+        str(item[name]): {k: v for k, v in item.items() if k != "accounting"} for item in data[key]
+    }
 
 
 def diag(statistics: dict) -> dict:

@@ -1,0 +1,81 @@
+{
+ "reservations": [
+  {
+   "accounts": "admins",
+   "burst_buffer": "",
+   "core_count": 64,
+   "core_specializations": [],
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1798009166
+   },
+   "features": "",
+   "flags": [
+    "IGNORE_JOBS",
+    "SPEC_NODES"
+   ],
+   "groups": "",
+   "licenses": "",
+   "max_start_delay": 0,
+   "name": "fpga-ocxl",
+   "node_count": 2,
+   "node_list": "fp[03-04]",
+   "partition": "",
+   "purge_completed": {
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 300
+    }
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1787641166
+   },
+   "tres": "cpu=256",
+   "users": ""
+  },
+  {
+   "accounts": "admins",
+   "burst_buffer": "",
+   "core_count": 64,
+   "core_specializations": [],
+   "end_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1793185716
+   },
+   "features": "",
+   "flags": [
+    "MAINT",
+    "IGNORE_JOBS",
+    "SPEC_NODES"
+   ],
+   "groups": "",
+   "licenses": "",
+   "max_start_delay": 0,
+   "name": "maint-cx43",
+   "node_count": 1,
+   "node_list": "cx43",
+   "partition": "",
+   "purge_completed": {
+    "time": {
+     "set": true,
+     "infinite": false,
+     "number": 300
+    }
+   },
+   "start_time": {
+    "set": true,
+    "infinite": false,
+    "number": 1793012916
+   },
+   "tres": "cpu=128",
+   "users": ""
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}
