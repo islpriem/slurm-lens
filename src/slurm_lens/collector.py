@@ -1,4 +1,4 @@
-"""Periodic collection of the live queue and the nodes."""
+"""Periodic collection: live queue and configuration."""
 
 import logging
 from datetime import UTC, datetime
@@ -15,6 +15,7 @@ from .models import (
     NodeSnapshot,
     Snapshot,
 )
+from .parse import num
 from .store import Store
 
 log = logging.getLogger(__name__)
@@ -35,7 +36,7 @@ class Collector:
             session.add(snapshot)
             session.flush()
             self.snapshot_id = snapshot.id
-        steps = [self.queue, self.nodes]
+        steps = [self.queue, self.nodes, self.slurm_config, self.accounting_config]
         errors = []
         self.client = self._client()
         for step in steps:
@@ -89,3 +90,20 @@ class Collector:
             NodeSnapshot.upsert(session, [state for state, _ in rows])
             static = {state["node"]: config for state, config in rows}
             ConfigVersion.record(session, "node", static, self.now)
+
+    def slurm_config(self) -> None:
+        conf = {key: num(value) for key, value in self.fetch("conf")["slurm_conf"].items()}
+        self._record({"slurm_conf": conf} | self._config_items("partition", "reservation"))
+
+    def accounting_config(self) -> None:
+        self._record(self._config_items("qos", "tres", "association"))
+
+    def _config_items(self, *kinds: str) -> dict[str, dict]:
+        return {kind: slurm.config_items(kind, self.fetch(slurm.CONFIG[kind][0])) for kind in kinds}
+
+    def _record(self, kinds: dict[str, dict]) -> None:
+        # everything is fetched before anything is written, a failed request changes nothing
+        with self.store.session.begin() as session:
+            for kind, values in kinds.items():
+                if changed := ConfigVersion.record(session, kind, values, self.now):
+                    log.info("%s: %d changes", kind, changed)

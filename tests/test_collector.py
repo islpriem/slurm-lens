@@ -9,6 +9,7 @@ from slurm_lens.collector import Collector
 from slurm_lens.config import Config
 from slurm_lens.models import (
     ApiCall,
+    ConfigVersion,
     JobAllocation,
     JobSnapshot,
     NodeSnapshot,
@@ -57,7 +58,7 @@ def count(session, model, *where):
     return session.scalar(select(func.count()).select_from(model).where(*where))
 
 
-def test_run_stores_queue_and_nodes(collect, session):
+def test_run_stores_queue_nodes_and_configuration(collect, session):
     collect()
     snapshot = session.scalars(select(Snapshot)).one()
     assert (snapshot.status, snapshot.error) == ("ok", None)
@@ -65,13 +66,17 @@ def test_run_stores_queue_and_nodes(collect, session):
     assert count(session, JobSnapshot) == len(payload("jobs")["jobs"])
     assert count(session, JobAllocation) >= 1
     assert count(session, NodeSnapshot) == len(payload("nodes")["nodes"])
+    kinds = set(session.scalars(select(ConfigVersion.kind).distinct()))
+    assert kinds == {"slurm_conf", "node", "partition", "reservation", "qos", "tres", "association"}
 
 
-def test_second_run_adds_a_snapshot(collect, session):
+def test_second_run_adds_a_snapshot_but_no_new_versions(collect, session):
     collect()
+    versions = count(session, ConfigVersion)
     collect(NOW + timedelta(minutes=5))
     assert count(session, Snapshot) == 2
     assert count(session, JobSnapshot) == 2 * len(payload("jobs")["jobs"])
+    assert count(session, ConfigVersion) == versions
 
 
 def test_a_failing_endpoint_does_not_stop_the_run(collect, session):
