@@ -47,6 +47,21 @@ def test_node_splits_state_from_static_configuration():
     assert "alloc_cpus" not in static and static["gres"] == node["gres"]
 
 
+def test_accounting_record_and_nodes():
+    completed = payload("history")["jobs"][0]
+    record, nodes = slurm.record_rows(completed)
+    assert record["sluid"] == completed["sluid"]
+    assert record["end_time"] > record["start_time"]
+    assert record["gpus"] and record["gpu_model"]
+    assert [n["node"] for n in nodes]
+
+
+def test_pending_record_has_no_nodes():
+    pending = payload("history")["jobs"][2]
+    record, nodes = slurm.record_rows(pending)
+    assert record["start_time"] is None and nodes == []
+
+
 def test_diag_drops_lists_with_user_names():
     diag = slurm.diag(payload("diag")["statistics"] | {"rpcs_by_user": [{"user": "x"}]})
     assert "rpcs_by_user" not in diag and diag["jobs_running"] >= 0

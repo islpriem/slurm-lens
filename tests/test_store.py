@@ -2,24 +2,26 @@ from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select
 
-from slurm_lens.models import ConfigVersion, Snapshot
+from slurm_lens.models import ConfigVersion, HistoryWindow
 
 T0 = datetime(2026, 11, 1, tzinfo=UTC)
 
 
-ROW = {"id": 1, "taken_at": T0}
+WINDOW = {"start_time": T0, "end_time": T0 + timedelta(hours=4), "fetched_at": T0, "items": 1}
 
 
 def test_upsert_updates_the_given_columns(session):
-    Snapshot.upsert(session, [{**ROW, "status": "running"}], ["status"])
-    Snapshot.upsert(session, [{**ROW, "status": "ok"}], ["status"])
-    assert session.scalars(select(Snapshot.status)).one() == "ok"
+    update = ["fetched_at", "items", "complete"]
+    HistoryWindow.upsert(session, [{**WINDOW, "complete": False}], update)
+    HistoryWindow.upsert(session, [{**WINDOW, "items": 5, "complete": True}], update)
+    window = session.scalars(select(HistoryWindow)).one()
+    assert (window.items, window.complete) == (5, True)
 
 
 def test_upsert_without_update_keeps_the_first_row(session):
-    Snapshot.upsert(session, [{**ROW, "status": "running"}])
-    Snapshot.upsert(session, [{**ROW, "status": "ok"}])
-    assert session.scalars(select(Snapshot.status)).one() == "running"
+    HistoryWindow.upsert(session, [{**WINDOW, "complete": False}])
+    HistoryWindow.upsert(session, [{**WINDOW, "items": 5, "complete": True}])
+    assert session.scalars(select(HistoryWindow.items)).one() == 1
 
 
 def test_config_versions_change_only_when_values_change(session):

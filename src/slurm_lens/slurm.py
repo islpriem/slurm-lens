@@ -2,7 +2,7 @@
 
 from typing import Any, NamedTuple
 
-from .parse import array_size, gres, index_range, join, num, stamp, tres
+from .parse import array_size, gres, hostlist, index_range, join, num, stamp, tres, tres_list
 
 VERSION = "v0.0.45"
 PATHS = {
@@ -16,6 +16,7 @@ PATHS = {
     "qos": f"/slurmdb/{VERSION}/qos/",
     "tres": f"/slurmdb/{VERSION}/tres/",
     "associations": f"/slurmdb/{VERSION}/associations/",
+    "history": f"/slurmdb/{VERSION}/jobs/",
 }
 ALLOWED = frozenset(PATHS.values())
 
@@ -186,6 +187,50 @@ def share_row(s: dict, snapshot_id: int) -> dict:
         "fairshare_level": num(s["fairshare"]["level"]),
         "tres_usage": {t["name"]: num(t["value"]) for t in s["tres"]["usage"] if num(t["value"])},
     }
+
+
+def record_rows(r: dict) -> tuple[dict, list[dict]]:
+    """A job from accounting and the nodes it ran on."""
+    t = r["time"]
+    allocated, requested = tres_list(r["tres"]["allocated"]), tres_list(r["tres"]["requested"])
+    used = allocated or requested
+    started_on = [f.removeprefix("STARTED_ON_") for f in r["flags"] if f.startswith("STARTED_ON_")]
+    record = {
+        "sluid": r["sluid"],
+        "job_id": r["job_id"],
+        "array_job_id": r["array"]["job_id"] or None,
+        "array_task_id": num(r["array"]["task_id"]),
+        "user_name": r["user"],
+        "account": r["account"],
+        "partition": r["partition"],
+        "qos": r["qos"],
+        "state": join(r["state"]["current"]),
+        "reason": r["state"]["reason"],
+        "exit_code": num(r["exit_code"]["return_code"]),
+        "submit_time": stamp(t["submission"]),
+        "eligible_time": stamp(t["eligible"]),
+        "start_time": stamp(t["start"]),
+        "end_time": stamp(t["end"]),
+        "elapsed_s": t["elapsed"],
+        "wait_s": num(t["planned"]),
+        "suspended_s": t["suspended"],
+        "time_limit_min": num(t["limit"]),
+        "priority": num(r["priority"]),
+        "node_count": r["allocation_nodes"],
+        "cpus": used.get("cpu"),
+        "memory_mb": used.get("mem"),
+        "gpus": used.get("gres/gpu"),
+        "gpu_model": gpu_model(used),
+        "billing": used.get("billing"),
+        "tres_req": requested,
+        "tres_alloc": allocated,
+        "constraints": r["constraints"] or None,
+        "started_on": started_on[0] if started_on else None,
+        "flags": join(r["flags"]),
+        "restart_cnt": r["restart_cnt"],
+    }
+    nodes = hostlist(r["nodes"]) if record["start_time"] else []
+    return record, [{"sluid": r["sluid"], "node": node} for node in nodes]
 
 
 def diag(statistics: dict) -> dict:

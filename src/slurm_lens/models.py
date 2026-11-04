@@ -195,3 +195,60 @@ class FairshareSnapshot(Base):
     fairshare_factor: Mapped[float | None]
     fairshare_level: Mapped[float | None]
     tres_usage: Mapped[dict]  # decayed usage per TRES, non-zero only
+
+
+class HistoryWindow(Base):
+    """A time window of the accounting history; complete once fetched after it ended."""
+
+    __tablename__ = "history_window"
+    start_time: Mapped[datetime] = mapped_column(primary_key=True)
+    end_time: Mapped[datetime]
+    fetched_at: Mapped[datetime]
+    items: Mapped[int]
+    complete: Mapped[bool]
+
+
+class JobRecord(Base):
+    """A job from accounting (sacct); a requeued job gets a new record."""
+
+    __tablename__ = "job_record"
+    sluid: Mapped[str] = mapped_column(primary_key=True)
+    job_id: Mapped[int] = mapped_column(index=True)
+    array_job_id: Mapped[int | None]
+    array_task_id: Mapped[int | None]
+    user_name: Mapped[str]
+    account: Mapped[str]
+    partition: Mapped[str]
+    qos: Mapped[str]
+    state: Mapped[str]
+    reason: Mapped[str | None]
+    exit_code: Mapped[int | None]
+    submit_time: Mapped[datetime | None]
+    eligible_time: Mapped[datetime | None]
+    start_time: Mapped[datetime | None] = mapped_column(index=True)
+    end_time: Mapped[datetime | None]
+    elapsed_s: Mapped[int]
+    wait_s: Mapped[int | None]  # eligible until start
+    suspended_s: Mapped[int]
+    time_limit_min: Mapped[int | None]
+    priority: Mapped[int | None]
+    node_count: Mapped[int]
+    cpus: Mapped[int | None]
+    memory_mb: Mapped[int | None]
+    gpus: Mapped[int | None]
+    gpu_model: Mapped[str | None]
+    billing: Mapped[int | None]
+    tres_req: Mapped[dict]
+    tres_alloc: Mapped[dict]
+    constraints: Mapped[str | None]
+    started_on: Mapped[str | None]  # SCHEDULE (main scheduler), BACKFILL or SUBMIT
+    flags: Mapped[str | None]
+    restart_cnt: Mapped[int]
+
+
+class JobRecordNode(Base):
+    """Nodes a job from accounting ran on."""
+
+    __tablename__ = "job_record_node"
+    sluid: Mapped[str] = mapped_column(ForeignKey("job_record.sluid"), primary_key=True)
+    node: Mapped[str] = mapped_column(primary_key=True, index=True)

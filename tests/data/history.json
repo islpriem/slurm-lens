@@ -1,0 +1,730 @@
+{
+ "jobs": [
+  {
+   "account": "chair-c",
+   "comment": {
+    "administrator": "",
+    "job": "",
+    "system": ""
+   },
+   "allocation_nodes": 1,
+   "array": {
+    "job_id": 0,
+    "limits": {
+     "max": {
+      "running": {
+       "tasks": 0
+      }
+     }
+    },
+    "task_id": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "task": ""
+   },
+   "association": {
+    "account": "chair-c",
+    "cluster": "cluster",
+    "partition": "",
+    "user": "heidi",
+    "id": 1237
+   },
+   "block": "",
+   "cluster": "cluster",
+   "constraints": "",
+   "container": "",
+   "sluid": "sC1NM5V3B3GK00",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "time": {
+    "elapsed": 12863,
+    "eligible": 1792984583,
+    "end": 1793020883,
+    "planned": {
+     "set": true,
+     "infinite": false,
+     "number": 23437
+    },
+    "start": 1793008020,
+    "submission": 1792984583,
+    "suspended": 0,
+    "system": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "limit": {
+     "set": true,
+     "infinite": false,
+     "number": 720
+    },
+    "total": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "user": {
+     "seconds": 0,
+     "microseconds": 0
+    }
+   },
+   "exclusive": "NO",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "flags": [
+    "STARTED_ON_SCHEDULE",
+    "START_RECEIVED"
+   ],
+   "group": "users",
+   "het": {
+    "job_id": 0,
+    "job_offset": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "job_id": 2782862,
+   "name": "",
+   "licenses": "",
+   "mcs": {
+    "label": ""
+   },
+   "nodes": "gx24",
+   "oversubscribe": "NO",
+   "partition": "pot-hpi-gpu-batch",
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 6563
+   },
+   "qos": "normal",
+   "qosreq": "",
+   "required": {
+    "CPUs": 4,
+    "memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 20480
+    }
+   },
+   "kill_request_user": "",
+   "restart_cnt": 0,
+   "reservation": {
+    "id": 0,
+    "name": "",
+    "requested": ""
+   },
+   "script": "",
+   "segment_size": 0,
+   "original_sluid": "sC1NM5V3B3GK00",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "stdout": "",
+   "stderr": "",
+   "stdin": "",
+   "state": {
+    "current": [
+     "COMPLETED"
+    ],
+    "reason": "None"
+   },
+   "steps": [],
+   "submit_line": "",
+   "tres": {
+    "allocated": [
+     {
+      "type": "cpu",
+      "name": "",
+      "id": 1,
+      "count": 4
+     },
+     {
+      "type": "mem",
+      "name": "",
+      "id": 2,
+      "count": 20480
+     },
+     {
+      "type": "energy",
+      "name": "",
+      "id": 3,
+      "count": 3003270
+     },
+     {
+      "type": "node",
+      "name": "",
+      "id": 4,
+      "count": 1
+     },
+     {
+      "type": "billing",
+      "name": "",
+      "id": 5,
+      "count": 1000
+     },
+     {
+      "type": "gres",
+      "name": "gpu",
+      "id": 1001,
+      "count": 1
+     },
+     {
+      "type": "gres",
+      "name": "gpu:b200",
+      "id": 1006,
+      "count": 1
+     }
+    ],
+    "requested": [
+     {
+      "type": "cpu",
+      "name": "",
+      "id": 1,
+      "count": 4
+     },
+     {
+      "type": "mem",
+      "name": "",
+      "id": 2,
+      "count": 20480
+     },
+     {
+      "type": "node",
+      "name": "",
+      "id": 4,
+      "count": 1
+     },
+     {
+      "type": "billing",
+      "name": "",
+      "id": 5,
+      "count": 1000
+     },
+     {
+      "type": "gres",
+      "name": "gpu",
+      "id": 1001,
+      "count": 1
+     },
+     {
+      "type": "gres",
+      "name": "gpu:b200",
+      "id": 1006,
+      "count": 1
+     }
+    ]
+   },
+   "used_gres": "",
+   "user": "heidi",
+   "wckey": {
+    "wckey": "",
+    "flags": []
+   },
+   "working_directory": ""
+  },
+  {
+   "account": "chair-d",
+   "comment": {
+    "administrator": "",
+    "job": "",
+    "system": ""
+   },
+   "allocation_nodes": 1,
+   "array": {
+    "job_id": 0,
+    "limits": {
+     "max": {
+      "running": {
+       "tasks": 0
+      }
+     }
+    },
+    "task_id": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "task": ""
+   },
+   "association": {
+    "account": "chair-d",
+    "cluster": "cluster",
+    "partition": "",
+    "user": "ivan",
+    "id": 1688
+   },
+   "block": "",
+   "cluster": "cluster",
+   "constraints": "ARCH:X86",
+   "container": "",
+   "sluid": "sC1NM5FMBFQ200",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "time": {
+    "elapsed": 421254,
+    "eligible": 1792599889,
+    "end": 0,
+    "planned": {
+     "set": true,
+     "infinite": false,
+     "number": 4
+    },
+    "start": 1792599893,
+    "submission": 1792599768,
+    "suspended": 0,
+    "system": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "limit": {
+     "set": true,
+     "infinite": false,
+     "number": 10080
+    },
+    "total": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "user": {
+     "seconds": 0,
+     "microseconds": 0
+    }
+   },
+   "exclusive": "NO",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "flags": [
+    "STARTED_ON_SCHEDULE",
+    "START_RECEIVED"
+   ],
+   "group": "users",
+   "het": {
+    "job_id": 0,
+    "job_offset": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "job_id": 2510331,
+   "name": "",
+   "licenses": "",
+   "mcs": {
+    "label": ""
+   },
+   "nodes": "cx17",
+   "oversubscribe": "NO",
+   "partition": "pot-hpi-cpu-batch",
+   "hold": false,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 7128
+   },
+   "qos": "normal",
+   "qosreq": "",
+   "required": {
+    "CPUs": 24,
+    "memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 393216
+    }
+   },
+   "kill_request_user": "",
+   "restart_cnt": 6,
+   "reservation": {
+    "id": 0,
+    "name": "",
+    "requested": ""
+   },
+   "script": "",
+   "segment_size": 0,
+   "original_sluid": "sC1NM5FMBFQ200",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "stdout": "",
+   "stderr": "",
+   "stdin": "",
+   "state": {
+    "current": [
+     "RUNNING"
+    ],
+    "reason": "BeginTime"
+   },
+   "steps": [],
+   "submit_line": "",
+   "tres": {
+    "allocated": [
+     {
+      "type": "cpu",
+      "name": "",
+      "id": 1,
+      "count": 24
+     },
+     {
+      "type": "mem",
+      "name": "",
+      "id": 2,
+      "count": 393216
+     },
+     {
+      "type": "energy",
+      "name": "",
+      "id": 3,
+      "count": -2
+     },
+     {
+      "type": "node",
+      "name": "",
+      "id": 4,
+      "count": 1
+     },
+     {
+      "type": "billing",
+      "name": "",
+      "id": 5,
+      "count": 6144
+     }
+    ],
+    "requested": [
+     {
+      "type": "cpu",
+      "name": "",
+      "id": 1,
+      "count": 24
+     },
+     {
+      "type": "mem",
+      "name": "",
+      "id": 2,
+      "count": 393216
+     },
+     {
+      "type": "node",
+      "name": "",
+      "id": 4,
+      "count": 1
+     },
+     {
+      "type": "billing",
+      "name": "",
+      "id": 5,
+      "count": 6144
+     }
+    ]
+   },
+   "used_gres": "",
+   "user": "ivan",
+   "wckey": {
+    "wckey": "",
+    "flags": []
+   },
+   "working_directory": ""
+  },
+  {
+   "account": "aisc",
+   "comment": {
+    "administrator": "",
+    "job": "",
+    "system": ""
+   },
+   "allocation_nodes": 0,
+   "array": {
+    "job_id": 0,
+    "limits": {
+     "max": {
+      "running": {
+       "tasks": 0
+      }
+     }
+    },
+    "task_id": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "task": ""
+   },
+   "association": {
+    "account": "aisc",
+    "cluster": "cluster",
+    "partition": "",
+    "user": "judy",
+    "id": 1781
+   },
+   "block": "",
+   "cluster": "cluster",
+   "constraints": "ARCH:X86",
+   "container": "",
+   "sluid": "sC1NM3SHMT8700",
+   "derived_exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "time": {
+    "elapsed": 0,
+    "eligible": 1790785110,
+    "end": 0,
+    "planned": {
+     "set": true,
+     "infinite": false,
+     "number": 2236037
+    },
+    "start": 0,
+    "submission": 1790784989,
+    "suspended": 0,
+    "system": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "limit": {
+     "set": true,
+     "infinite": false,
+     "number": 1440
+    },
+    "total": {
+     "seconds": 0,
+     "microseconds": 0
+    },
+    "user": {
+     "seconds": 0,
+     "microseconds": 0
+    }
+   },
+   "exclusive": "NO",
+   "exit_code": {
+    "status": [
+     "SUCCESS"
+    ],
+    "return_code": {
+     "set": true,
+     "infinite": false,
+     "number": 0
+    },
+    "signal": {
+     "id": {
+      "set": false,
+      "infinite": false,
+      "number": 0
+     },
+     "name": ""
+    }
+   },
+   "extra": "",
+   "failed_node": "",
+   "flags": [
+    "START_RECEIVED"
+   ],
+   "group": "users",
+   "het": {
+    "job_id": 0,
+    "job_offset": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    }
+   },
+   "job_id": 2586980,
+   "name": "",
+   "licenses": "",
+   "mcs": {
+    "label": ""
+   },
+   "nodes": "None assigned",
+   "oversubscribe": "NO",
+   "partition": "pot-hpi-aisc-batch",
+   "hold": true,
+   "priority": {
+    "set": true,
+    "infinite": false,
+    "number": 0
+   },
+   "qos": "aisc",
+   "qosreq": "",
+   "required": {
+    "CPUs": 4,
+    "memory_per_cpu": {
+     "set": false,
+     "infinite": false,
+     "number": 0
+    },
+    "memory_per_node": {
+     "set": true,
+     "infinite": false,
+     "number": 98304
+    }
+   },
+   "kill_request_user": "",
+   "restart_cnt": 1,
+   "reservation": {
+    "id": 0,
+    "name": "",
+    "requested": ""
+   },
+   "script": "",
+   "segment_size": 0,
+   "original_sluid": "sC1NM3SHMT8700",
+   "stdin_expanded": "",
+   "stdout_expanded": "",
+   "stderr_expanded": "",
+   "stdout": "",
+   "stderr": "",
+   "stdin": "",
+   "state": {
+    "current": [
+     "PENDING"
+    ],
+    "reason": "None"
+   },
+   "steps": [],
+   "submit_line": "",
+   "tres": {
+    "allocated": [],
+    "requested": [
+     {
+      "type": "cpu",
+      "name": "",
+      "id": 1,
+      "count": 4
+     },
+     {
+      "type": "mem",
+      "name": "",
+      "id": 2,
+      "count": 98304
+     },
+     {
+      "type": "node",
+      "name": "",
+      "id": 4,
+      "count": 1
+     },
+     {
+      "type": "billing",
+      "name": "",
+      "id": 5,
+      "count": 1536
+     },
+     {
+      "type": "gres",
+      "name": "gpu",
+      "id": 1001,
+      "count": 1
+     },
+     {
+      "type": "gres",
+      "name": "gpu:h100",
+      "id": 1014,
+      "count": 1
+     }
+    ]
+   },
+   "used_gres": "",
+   "user": "judy",
+   "wckey": {
+    "wckey": "",
+    "flags": []
+   },
+   "working_directory": ""
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}
