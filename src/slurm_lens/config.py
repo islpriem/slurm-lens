@@ -3,7 +3,7 @@
 import os
 from configparser import ConfigParser
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from sqlalchemy.engine import URL, make_url
@@ -16,13 +16,16 @@ class Config:
     database_url: str
     interval: timedelta
     fairshare_interval: timedelta
+    history_start: datetime
+    window: timedelta
+    max_backfill_windows: int
 
     @classmethod
     def load(cls, path: Path) -> "Config":
         ini = ConfigParser(inline_comment_prefixes=(";",))
         with open(path) as f:
             ini.read_file(f)
-        slurm, collector = ini["slurm"], ini["collector"]
+        slurm, collector, history = ini["slurm"], ini["collector"], ini["history"]
         token_file = slurm.get("token_file")
         return cls(
             slurm_url=slurm["url"],
@@ -30,6 +33,9 @@ class Config:
             database_url=ini["database"]["url"],
             interval=timedelta(minutes=collector.getfloat("interval_minutes", 5)),
             fairshare_interval=timedelta(minutes=collector.getfloat("fairshare_minutes", 60)),
+            history_start=datetime.fromisoformat(history["start"]).replace(tzinfo=UTC),
+            window=timedelta(hours=history.getfloat("window_hours", 24)),
+            max_backfill_windows=history.getint("max_backfill_windows", 6),
         )
 
     def token(self) -> str:

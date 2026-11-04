@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -15,6 +15,11 @@ url = postgresql+psycopg://lens@db:5432/lens  ; password comes from the environm
 [collector]
 interval_minutes = 5
 fairshare_minutes = 60
+
+[history]
+start = 2026-10-01
+window_hours = 4
+max_backfill_windows = 6
 """
 
 
@@ -31,6 +36,9 @@ def test_load(config):
     assert config.slurm_url == "https://slurm.example.org"
     assert config.interval == timedelta(minutes=5)
     assert config.fairshare_interval == timedelta(hours=1)
+    assert config.history_start == datetime(2026, 10, 1, tzinfo=UTC)
+    assert config.window == timedelta(hours=4)
+    assert config.max_backfill_windows == 6
 
 
 def test_token_is_read_from_the_file_each_time(config):

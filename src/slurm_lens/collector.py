@@ -1,8 +1,8 @@
-"""Periodic collection: live queue, configuration and fairshare."""
+"""Periodic collection: live queue, configuration, fairshare and the accounting history."""
 
 import logging
 import time
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import func, select
 
@@ -13,8 +13,11 @@ from .models import (
     ApiCall,
     ConfigVersion,
     FairshareSnapshot,
+    HistoryWindow,
     Job,
     JobAllocation,
+    JobRecord,
+    JobRecordNode,
     JobSnapshot,
     NodeSnapshot,
     Snapshot,
@@ -23,6 +26,23 @@ from .parse import num
 from .store import Store
 
 log = logging.getLogger(__name__)
+
+# accounting may receive a job's final state a little after the job ended
+MARGIN = timedelta(hours=1)
+
+
+def history_windows(start, now, size, complete, backfill) -> list[datetime]:
+    """Window starts to fetch: the oldest incomplete ones (at most `backfill`), then recent ones.
+
+    A window is complete once it was fetched after its end plus MARGIN; recent windows can still
+    change and are fetched on every run.
+    """
+    seconds = size.total_seconds()
+    first = datetime.fromtimestamp(start.timestamp() // seconds * seconds, UTC)
+    starts = [first + i * size for i in range(int((now - first) / size) + 1)]
+    recent = [w for w in starts if w + size + MARGIN > now]
+    older = [w for w in starts if w not in complete and w not in recent]
+    return older[:backfill] + recent
 
 
 class Collector:
@@ -47,6 +67,7 @@ class Collector:
             session.flush()
             self.snapshot_id = snapshot.id
         steps = [self.queue, self.nodes, self.slurm_config, self.accounting_config, self.fairshare]
+        steps.append(self.history)
         errors = []
         self.client = self._client()
         for step in steps:
@@ -132,3 +153,34 @@ class Collector:
             FairshareSnapshot.upsert(
                 session, [slurm.share_row(s, self.snapshot_id) for s in shares]
             )
+
+    def history(self) -> None:
+        with self.store.session() as session:
+            query = select(HistoryWindow.start_time).where(HistoryWindow.complete)
+            complete = set(session.scalars(query))
+        config = self.config
+        starts = history_windows(
+            config.history_start, self.now, config.window, complete, config.max_backfill_windows
+        )
+        for start in starts:
+            end = start + config.window
+            data = self.fetch(
+                "history",
+                start_time=int(start.timestamp()),
+                end_time=int(end.timestamp()),
+                skip_steps="true",
+            )
+            rows = [slurm.record_rows(r) for r in data["jobs"]]
+            records = {record["sluid"]: record for record, _ in rows}
+            window = {
+                "start_time": start,
+                "end_time": end,
+                "fetched_at": self.now,
+                "items": len(records),
+                "complete": self.now >= end + MARGIN,
+            }
+            # each window is its own transaction, so an outage only loses the windows after it
+            with self.store.session.begin() as session:
+                JobRecord.upsert(session, list(records.values()), update=JobRecord.columns())
+                JobRecordNode.upsert(session, [n for _, nodes in rows for n in nodes])
+                HistoryWindow.upsert(session, [window], update=HistoryWindow.columns())
