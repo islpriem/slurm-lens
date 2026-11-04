@@ -25,14 +25,14 @@ def payload(name: str) -> dict:
 
 @pytest.fixture(scope="session")
 def store():
-    # a fresh database per test run, so every run starts empty
+    # a fresh database per test run, so the migrations are tested from scratch
     admin = create_engine(URL.set(database="postgres"), isolation_level="AUTOCOMMIT")
     with admin.connect() as connection:
         connection.execute(text(f'DROP DATABASE IF EXISTS "{URL.database}" WITH (FORCE)'))
         connection.execute(text(f'CREATE DATABASE "{URL.database}"'))
     admin.dispose()
     store = Store(URL)
-    store.create()
+    store.migrate()
     yield store
     store.engine.dispose()
 

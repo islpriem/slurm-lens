@@ -1,10 +1,17 @@
 from datetime import UTC, datetime, timedelta
 
+from alembic import command
 from sqlalchemy import select
 
 from slurm_lens.models import ConfigVersion, HistoryWindow
+from slurm_lens.store import alembic_config
 
 T0 = datetime(2026, 11, 1, tzinfo=UTC)
+
+
+def test_migrations_match_the_models(store):
+    with store.engine.connect() as connection:
+        command.check(alembic_config(connection))  # raises if a migration is missing
 
 
 WINDOW = {"start_time": T0, "end_time": T0 + timedelta(hours=4), "fetched_at": T0, "items": 1}

@@ -1,4 +1,4 @@
-"""Command line: collect snapshots."""
+"""Command line: migrate the database and collect snapshots."""
 
 import logging
 from pathlib import Path
@@ -28,12 +28,20 @@ def main(context: click.Context, path: Path):
 
 
 @main.command()
+@click.pass_obj
+def migrate(obj):
+    """Bring the database schema up to date."""
+    _, store = obj
+    store.migrate()
+
+
+@main.command()
 @click.option("--once", is_flag=True, help="Collect one snapshot and stop.")
 @click.pass_obj
 def collect(obj, once: bool):
-    """Collect a snapshot every interval."""
+    """Migrate, then collect a snapshot every interval."""
     config, store = obj
-    store.create()
+    store.migrate()
     collector = Collector(config, store)
     if once:
         collector.run()
