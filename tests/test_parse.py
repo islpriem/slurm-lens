@@ -25,6 +25,7 @@ def test_stamp():
         2026, 10, 25, 17, 9, 10, tzinfo=UTC
     )
     assert stamp(0) is None
+    assert stamp(4294967294) is None  # NO_VAL, start time of jobs cancelled before they ran
 
 
 def test_join():

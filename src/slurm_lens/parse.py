@@ -4,6 +4,7 @@ import re
 from datetime import UTC, datetime
 
 MB_PER_UNIT = {"K": 1 / 1024, "M": 1, "G": 1024, "T": 1024**2}
+NO_VAL = 0xFFFFFFFE  # accounting uses it as start time of jobs cancelled before they ran
 GRES = re.compile(r"(\w+)(?::([\w-]+))?:(\d+)(?:\((S|IDX):([^)]*)\))?")
 HOSTS = re.compile(r"([^,\[]+)(?:\[([^\]]+)\])?")
 
@@ -16,9 +17,9 @@ def num(value):
 
 
 def stamp(value) -> datetime | None:
-    """Unix timestamp as UTC datetime, where 0 means 'not set'."""
+    """Unix timestamp as UTC datetime, where 0 and NO_VAL mean 'not set'."""
     seconds = num(value)
-    return datetime.fromtimestamp(seconds, UTC) if seconds else None
+    return datetime.fromtimestamp(seconds, UTC) if seconds and seconds < NO_VAL else None
 
 
 def join(values) -> str | None:
