@@ -8,6 +8,7 @@ INI = """
 [slurm]
 url = https://slurm.example.org
 token_file = {token}
+pause_seconds = 0.5
 
 [database]
 url = postgresql+psycopg://lens@db:5432/lens  ; password comes from the environment
@@ -34,6 +35,7 @@ def config(tmp_path):
 
 def test_load(config):
     assert config.slurm_url == "https://slurm.example.org"
+    assert config.pause == 0.5
     assert config.interval == timedelta(minutes=5)
     assert config.fairshare_interval == timedelta(hours=1)
     assert config.history_start == datetime(2026, 10, 1, tzinfo=UTC)

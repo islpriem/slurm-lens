@@ -13,6 +13,7 @@ from sqlalchemy.engine import URL, make_url
 class Config:
     slurm_url: str
     token_file: Path | None
+    pause: float
     database_url: str
     interval: timedelta
     fairshare_interval: timedelta
@@ -30,11 +31,12 @@ class Config:
         return cls(
             slurm_url=slurm["url"],
             token_file=Path(token_file) if token_file else None,
+            pause=slurm.getfloat("pause_seconds", 2.0),
             database_url=ini["database"]["url"],
             interval=timedelta(minutes=collector.getfloat("interval_minutes", 5)),
             fairshare_interval=timedelta(minutes=collector.getfloat("fairshare_minutes", 60)),
             history_start=datetime.fromisoformat(history["start"]).replace(tzinfo=UTC),
-            window=timedelta(hours=history.getfloat("window_hours", 24)),
+            window=timedelta(hours=history.getfloat("window_hours", 4)),
             max_backfill_windows=history.getint("max_backfill_windows", 6),
         )
 

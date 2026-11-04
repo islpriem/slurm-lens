@@ -88,6 +88,7 @@ class Collector:
             self.config.slurm_url,
             self.config.token(),
             slurm.ALLOWED,
+            self.config.pause,
             transport=self.transport,
         )
 

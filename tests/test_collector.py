@@ -45,6 +45,7 @@ def config(**changes):
     values = dict(
         slurm_url="https://slurm.test",
         token_file=None,
+        pause=0,
         database_url="",
         interval=timedelta(minutes=5),
         fairshare_interval=HOUR,
