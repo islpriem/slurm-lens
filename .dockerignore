@@ -1,0 +1,6 @@
+# the image only needs the package
+*
+!pyproject.toml
+!uv.lock
+!README.md
+!src

@@ -1,5 +1,9 @@
 __pycache__/
 .venv/
+.cache/
+.data/
 .env
 .pytest_cache/
 .ruff_cache/
+.ipynb_checkpoints/
+config/local.ini

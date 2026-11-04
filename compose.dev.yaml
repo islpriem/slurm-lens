@@ -1,0 +1,13 @@
+# local development: data inside the checkout, config from config/local.ini, token from .env
+services:
+  db:
+    volumes: !override
+      - ./.data/postgres:/var/lib/postgresql/data
+
+  collector:
+    env_file: .env
+    environment:
+      SLURM_LENS_CONFIG: /app/config/local.ini
+      SLURM_LENS_DATABASE_URL: postgresql+psycopg://slurm_lens@db:5432/slurm_lens
+    volumes: !override
+      - ./config/local.ini:/app/config/local.ini:ro

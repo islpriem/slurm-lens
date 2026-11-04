@@ -16,5 +16,22 @@ services:
       retries: 10
     restart: unless-stopped
 
+  collector:
+    build: .
+    command: ["collect"]
+    environment:
+      SLURM_LENS_CONFIG: /etc/slurm-lens/slurm-lens.ini
+      SLURM_LENS_DB_PASSWORD: ${SLURM_LENS_DB_PASSWORD}
+    volumes:
+      - /etc/slurm-lens:/etc/slurm-lens:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "slurm-lens", "status"]
+      interval: 5m
+      start_period: 10m
+    restart: unless-stopped
+
 volumes:
   db:
