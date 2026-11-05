@@ -46,6 +46,7 @@ def collect(obj, once: bool):
     config, store = obj
     store.migrate()
     collector = Collector(config, store)
+    collector.abort_unfinished()
     if once:
         collector.run()
     else:

@@ -4,7 +4,7 @@ import logging
 import time
 from datetime import UTC, datetime, timedelta
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 
 from . import slurm
 from .client import SlurmClient, Unavailable
@@ -52,6 +52,12 @@ class Collector:
         self.config = config
         self.store = store
         self.transport = transport  # tests replace the network here
+
+    def abort_unfinished(self) -> None:
+        """Mark snapshots of a run that was killed, e.g. by a restart of the container."""
+        with self.store.session.begin() as session:
+            query = update(Snapshot).where(Snapshot.status == "running")
+            session.execute(query.values(status="aborted"))
 
     def forever(self) -> None:
         while True:

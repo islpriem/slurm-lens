@@ -48,7 +48,7 @@ class Snapshot(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     taken_at: Mapped[datetime]
     finished_at: Mapped[datetime | None]
-    status: Mapped[str] = mapped_column(default="running")  # running, ok, partial or failed
+    status: Mapped[str] = mapped_column(default="running")  # running, ok, partial, failed, aborted
     error: Mapped[str | None]
     diag: Mapped[dict | None]  # sdiag statistics
 

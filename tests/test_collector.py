@@ -131,3 +131,11 @@ def test_an_unreachable_api_stops_the_run_early(collect, session):
     snapshot = session.scalars(select(Snapshot)).one()
     assert snapshot.status == "failed" and "no answer" in snapshot.error
     assert count(session, ApiCall) == 0  # nothing was answered, the run stopped at the first step
+
+
+def test_unfinished_snapshots_are_marked_aborted(store, session):
+    session.add(Snapshot(taken_at=NOW))
+    session.commit()
+    Collector(config(), store).abort_unfinished()
+    session.expire_all()
+    assert session.scalars(select(Snapshot.status)).one() == "aborted"
