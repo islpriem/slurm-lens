@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 from sqlalchemy import func, select, update
 
 from . import slurm
-from .client import SlurmClient, Unavailable
+from .client import SlurmClient, Unavailable, token_expiry
 from .config import Config
 from .models import (
     ApiCall,
@@ -96,12 +96,12 @@ class Collector:
         log.info("snapshot %s: %s", self.snapshot_id, status)
 
     def _client(self) -> SlurmClient:
+        token = self.config.token()
+        expiry = token_expiry(token)
+        if expiry and expiry - self.now < timedelta(days=1):
+            log.warning("the Slurm token expires at %s", expiry)
         return SlurmClient(
-            self.config.slurm_url,
-            self.config.token(),
-            slurm.ALLOWED,
-            self.config.pause,
-            transport=self.transport,
+            self.config.slurm_url, token, slurm.ALLOWED, self.config.pause, transport=self.transport
         )
 
     def fetch(self, name: str, **params) -> dict:

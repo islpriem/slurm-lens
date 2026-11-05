@@ -1,7 +1,11 @@
+import base64
+import json
+from datetime import UTC, datetime
+
 import httpx
 import pytest
 
-from slurm_lens.client import SlurmClient, TokenError, Unavailable
+from slurm_lens.client import SlurmClient, TokenError, Unavailable, token_expiry
 
 PATH = "/slurm/v0.0.45/ping/"
 
@@ -75,3 +79,13 @@ def test_slurm_errors_in_json_are_returned_not_retried():
 def test_rejected_token_raises():
     with pytest.raises(TokenError):
         client(lambda request: httpx.Response(401)).get(PATH)
+
+
+def test_token_expiry():
+    payload = (
+        base64.urlsafe_b64encode(json.dumps({"exp": 1792983282}).encode()).decode().rstrip("=")
+    )
+    assert token_expiry(f"header.{payload}.signature") == datetime(
+        2026, 10, 26, 2, 54, 42, tzinfo=UTC
+    )
+    assert token_expiry("not a jwt") is None

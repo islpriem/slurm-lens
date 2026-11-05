@@ -7,6 +7,7 @@ from pathlib import Path
 import click
 from sqlalchemy import func, select
 
+from .client import token_expiry
 from .collector import MARGIN, Collector, history_windows
 from .config import Config
 from .models import HistoryWindow, JobRecord, Snapshot
@@ -73,5 +74,9 @@ def status(obj):
     click.echo(f"last snapshot    {last.taken_at:%Y-%m-%d %H:%M} {last.status} {last.error or ''}")
     click.echo(f"last ok snapshot {last_ok:%Y-%m-%d %H:%M}" if last_ok else "last ok snapshot none")
     click.echo(f"history windows  {len(complete)} complete, {len(missing)} missing, {records} jobs")
+    try:
+        click.echo(f"token expires    {token_expiry(config.token()) or 'unknown'}")
+    except (OSError, KeyError):
+        click.echo("token            missing")
     if not last_ok or now - last_ok > 3 * config.interval:
         raise SystemExit(1)

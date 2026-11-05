@@ -1,7 +1,10 @@
 """Read-only HTTP access to slurmrestd."""
 
+import base64
+import json
 import time
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 
 import httpx
 
@@ -63,3 +66,13 @@ class SlurmClient:
             return Reply(response.status_code, seconds=seconds, error=response.text[:200])
         errors = "; ".join(e.get("description", "") for e in data.get("errors", []))
         return Reply(response.status_code, data, seconds, errors or None)
+
+
+def token_expiry(token: str) -> datetime | None:
+    """Expiry of a JWT from its payload; the signature is not checked, it is only for a warning."""
+    try:
+        payload = token.split(".")[1]
+        claims = json.loads(base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4)))
+        return datetime.fromtimestamp(claims["exp"], UTC)
+    except (IndexError, KeyError, ValueError):
+        return None
