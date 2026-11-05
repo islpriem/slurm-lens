@@ -3,7 +3,7 @@ COMPOSE := docker compose -f compose.yaml -f compose.dev.yaml
 # local default, the VM sets its own password
 export SLURM_LENS_DB_PASSWORD ?= slurm_lens
 
-.PHONY: up down logs db test lint collect psql
+.PHONY: up down logs db test lint collect status psql
 
 up:
 	$(COMPOSE) up -d --build
@@ -25,6 +25,9 @@ lint:
 
 collect: db
 	uv run --env-file .env slurm-lens --config config/local.ini collect --once
+
+status:
+	uv run --env-file .env slurm-lens --config config/local.ini status
 
 psql:
 	$(COMPOSE) exec db psql -U slurm_lens slurm_lens
