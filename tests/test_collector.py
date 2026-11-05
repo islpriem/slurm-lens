@@ -62,6 +62,8 @@ ROUTES = {path: name for name, path in PATHS.items()}
 def slurm_api(failing=(), status=502):
     def handler(request):
         name = ROUTES[request.url.path]
+        if name in failing and status is None:
+            raise httpx.ConnectError("name not known")
         if name in failing:
             return httpx.Response(status, text="Bad Gateway")
         return httpx.Response(200, json=payload(name))
@@ -116,3 +118,16 @@ def test_a_failing_endpoint_does_not_stop_the_run(collect, session):
     assert count(session, NodeSnapshot) == 0
     assert count(session, JobSnapshot) > 0
     assert count(session, ApiCall, ApiCall.status == 502) == 1
+
+
+def test_a_rejected_token_fails_the_run(collect, session):
+    collect(failing=set(PATHS), status=401)
+    snapshot = session.scalars(select(Snapshot)).one()
+    assert snapshot.status == "failed" and "token" in snapshot.error
+
+
+def test_an_unreachable_api_stops_the_run_early(collect, session):
+    collect(failing=set(PATHS), status=None)
+    snapshot = session.scalars(select(Snapshot)).one()
+    assert snapshot.status == "failed" and "no answer" in snapshot.error
+    assert count(session, ApiCall) == 0  # nothing was answered, the run stopped at the first step

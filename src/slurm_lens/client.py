@@ -6,6 +6,14 @@ from dataclasses import dataclass, field
 import httpx
 
 
+class Unavailable(Exception):
+    """slurmrestd cannot be used right now, so a whole run is pointless."""
+
+
+class TokenError(Unavailable):
+    """Slurm rejected the token."""
+
+
 @dataclass(frozen=True)
 class Reply:
     status: int
@@ -28,18 +36,27 @@ class SlurmClient:
     def get(self, path: str, **params) -> Reply:
         if path not in self.allowed:
             raise ValueError(f"{path} is not on the allowlist")
+        reply = failure = None
         for attempt in range(self.retries + 1):
             time.sleep(self.pause * 2**attempt)
-            reply = self._get(path, params)
-            # no JSON means the proxy failed and not slurmrestd, worth another try
+            # no response or no JSON means the proxy or the connection failed, worth another try
+            try:
+                reply = self._get(path, params)
+            except httpx.TransportError as error:
+                failure = error
+                continue
             if reply.data:
-                break
+                return reply
+        if reply is None:
+            raise Unavailable(f"no answer from {path}: {failure!r}")
         return reply
 
     def _get(self, path: str, params: dict) -> Reply:
         started = time.monotonic()
         response = self.http.get(path, params=params)
         seconds = time.monotonic() - started
+        if response.status_code in (401, 403):
+            raise TokenError(f"slurmrestd answered {response.status_code}, the token is invalid")
         try:
             data = response.json()
         except ValueError:

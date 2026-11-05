@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 from sqlalchemy import func, select
 
 from . import slurm
-from .client import SlurmClient
+from .client import SlurmClient, Unavailable
 from .config import Config
 from .models import (
     ApiCall,
@@ -69,13 +69,19 @@ class Collector:
         steps = [self.queue, self.nodes, self.slurm_config, self.accounting_config, self.fairshare]
         steps.append(self.history)
         errors = []
-        self.client = self._client()
-        for step in steps:
-            try:
-                step()
-            except Exception as error:
-                log.exception("step %s failed", step.__name__)
-                errors.append(f"{step.__name__}: {error}")
+        try:
+            self.client = self._client()
+            for step in steps:
+                try:
+                    step()
+                except Unavailable:
+                    raise
+                except Exception as error:
+                    log.exception("step %s failed", step.__name__)
+                    errors.append(f"{step.__name__}: {error}")
+        except (Unavailable, OSError, KeyError) as error:  # no answer or no usable token
+            log.error("run failed: %s", error)
+            errors = [str(error)] * len(steps)
         status = "ok" if not errors else "failed" if len(errors) == len(steps) else "partial"
         with self.store.session.begin() as session:
             snapshot = session.get(Snapshot, self.snapshot_id)

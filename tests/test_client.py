@@ -1,7 +1,7 @@
 import httpx
 import pytest
 
-from slurm_lens.client import SlurmClient
+from slurm_lens.client import SlurmClient, TokenError, Unavailable
 
 PATH = "/slurm/v0.0.45/ping/"
 
@@ -44,6 +44,18 @@ def test_retries_proxy_errors_without_json():
     assert reply.data == {"ok": 1}
 
 
+def test_gives_up_after_the_retries():
+    calls = []
+
+    def handler(request):
+        calls.append(request)
+        raise httpx.ConnectTimeout("timeout")
+
+    with pytest.raises(Unavailable, match="timeout"):
+        client(handler, retries=2).get(PATH)
+    assert len(calls) == 3
+
+
 def test_a_proxy_error_after_the_retries_is_returned():
     reply = client(lambda request: httpx.Response(502, text="Bad Gateway")).get(PATH)
     assert (reply.status, reply.error) == (502, "Bad Gateway")
@@ -58,3 +70,8 @@ def test_slurm_errors_in_json_are_returned_not_retried():
 
     reply = client(handler).get(PATH)
     assert (len(calls), reply.status, reply.error) == (1, 500, "broken")
+
+
+def test_rejected_token_raises():
+    with pytest.raises(TokenError):
+        client(lambda request: httpx.Response(401)).get(PATH)
