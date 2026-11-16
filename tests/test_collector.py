@@ -133,6 +133,19 @@ def test_an_unreachable_api_stops_the_run_early(collect, session):
     assert count(session, ApiCall) == 0  # nothing was answered, the run stopped at the first step
 
 
+def test_history_leaves_out_pending_jobs(store, session, monkeypatch):
+    monkeypatch.setenv("SLURM_JWT", "token")
+    api, urls = slurm_api(), []
+
+    def handler(request):
+        urls.append(request.url)
+        return api.handle_request(request)
+
+    Collector(config(), store, transport=httpx.MockTransport(handler)).run(NOW)
+    states = [url.params.get_list("state") for url in urls if url.path == PATHS["history"]]
+    assert states and all("RUNNING" in s and "PENDING" not in s for s in states)
+
+
 def test_unfinished_snapshots_are_marked_aborted(store, session):
     session.add(Snapshot(taken_at=NOW))
     session.commit()

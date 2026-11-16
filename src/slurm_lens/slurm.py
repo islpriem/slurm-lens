@@ -20,6 +20,10 @@ PATHS = {
 }
 ALLOWED = frozenset(PATHS.values())
 
+# accounting: jobs that ran in a window (RUNNING) or ended there without running; without a
+# state, pending jobs come back in every window they wait in, for large arrays tens of thousands
+HISTORY_STATES = ["RUNNING", "CANCELLED", "FAILED", "NODE_FAIL", "BOOT_FAIL", "DEADLINE"]
+
 # free text about the user's work; not needed and not stored
 PERSONAL = frozenset(
     [

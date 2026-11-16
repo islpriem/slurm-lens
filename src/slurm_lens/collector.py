@@ -183,6 +183,7 @@ class Collector:
                 end_time=int(end.timestamp()),
                 skip_steps="true",
                 disable_truncate_usage_time="true",  # otherwise start and end are cut to the window
+                state=slurm.HISTORY_STATES,
             )
             rows = [slurm.record_rows(r) for r in data["jobs"]]
             records = {record["sluid"]: record for record, _ in rows}
