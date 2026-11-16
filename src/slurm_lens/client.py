@@ -30,7 +30,7 @@ class SlurmClient:
 
     def __init__(self, url, token, allowed, pause=2.0, retries=2, transport=None):
         self.allowed = allowed
-        self.pause = pause  # slurmrestd has little memory, so requests are spaced out
+        self.pause = pause
         self.retries = retries
         self.http = httpx.Client(
             base_url=url, headers={"X-SLURM-USER-TOKEN": token}, timeout=300, transport=transport
