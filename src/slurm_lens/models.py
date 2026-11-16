@@ -1,6 +1,6 @@
 """Database schema. Times are UTC, memory is in MB, time limits in minutes, durations in seconds."""
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any
 
 from sqlalchemy import ARRAY, BigInteger, DateTime, ForeignKey, Index, Integer, or_, select, text
@@ -51,6 +51,20 @@ class Snapshot(Base):
     status: Mapped[str] = mapped_column(default="running")  # running, ok, partial, failed, aborted
     error: Mapped[str | None]
     diag: Mapped[dict | None]  # sdiag statistics
+
+    @classmethod
+    def latest(cls, session: Session, status: str | None = None) -> "Snapshot | None":
+        """The latest snapshot, or the latest one with the given status."""
+        query = select(cls).order_by(cls.id.desc()).limit(1)
+        if status:
+            query = query.where(cls.status == status)
+        return session.scalars(query).first()
+
+    @classmethod
+    def healthy(cls, session: Session, interval: timedelta, now: datetime) -> bool:
+        """A snapshot succeeded within the last three intervals."""
+        last_ok = cls.latest(session, "ok")
+        return last_ok is not None and now - last_ok.taken_at <= 3 * interval
 
 
 class ApiCall(Base):
@@ -206,6 +220,20 @@ class HistoryWindow(Base):
     fetched_at: Mapped[datetime]
     items: Mapped[int]
     complete: Mapped[bool]
+
+    @classmethod
+    def covered(cls, session: Session) -> tuple[datetime, datetime] | None:
+        """Start and end of the history without gaps, from the first complete window on."""
+        query = select(cls.start_time, cls.end_time).where(cls.complete).order_by(cls.start_time)
+        windows = session.execute(query).all()
+        if not windows:
+            return None
+        start, end = windows[0]
+        for window_start, window_end in windows[1:]:
+            if window_start > end:
+                break
+            end = max(end, window_end)
+        return start, end
 
 
 class JobRecord(Base):
