@@ -1,12 +1,14 @@
-"""Command line: migrate the database, collect snapshots, check that collecting works."""
+"""Command line: migrate the database, collect snapshots, check them, serve the web frontend."""
 
 import logging
 from datetime import UTC, datetime
 from pathlib import Path
 
 import click
+import uvicorn
 from sqlalchemy import func, select
 
+from .api import create_app
 from .client import token_expiry
 from .collector import MARGIN, Collector, history_windows
 from .config import Config
@@ -80,3 +82,15 @@ def status(obj):
         click.echo("token            missing")
     if not last_ok or now - last_ok > 3 * config.interval:
         raise SystemExit(1)
+
+
+@main.command()
+@click.option("--host", default="127.0.0.1", show_default=True)
+@click.option("--port", default=8000, show_default=True)
+@click.option("--web", type=click.Path(exists=True, file_okay=False, path_type=Path),
+              help="Built frontend to serve next to the API.")  # fmt: skip
+@click.pass_obj
+def serve(obj, host: str, port: int, web: Path | None):
+    """Serve the API for the web frontend."""
+    config, store = obj
+    uvicorn.run(create_app(config, store, web), host=host, port=port)
