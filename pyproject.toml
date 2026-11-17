@@ -4,7 +4,15 @@ version = "0.1.0"
 description = "Collects Slurm scheduling data to explain how jobs get scheduled"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["alembic", "click", "httpx", "psycopg[binary]", "sqlalchemy"]
+dependencies = [
+    "alembic",
+    "click",
+    "fastapi>=0.165.0",
+    "httpx",
+    "psycopg[binary]",
+    "sqlalchemy",
+    "uvicorn>=0.54.0",
+]
 
 [project.scripts]
 slurm-lens = "slurm_lens.cli:main"
