@@ -63,8 +63,8 @@ def status(obj):
     config, store = obj
     now = datetime.now(UTC)
     with store.session() as session:
-        last = session.scalars(select(Snapshot).order_by(Snapshot.id.desc()).limit(1)).first()
-        last_ok = session.scalar(select(func.max(Snapshot.taken_at)).where(Snapshot.status == "ok"))
+        last, last_ok = Snapshot.latest(session), Snapshot.latest(session, "ok")
+        healthy = Snapshot.healthy(session, config.interval, now)
         complete = set(
             session.scalars(select(HistoryWindow.start_time).where(HistoryWindow.complete))
         )
@@ -74,13 +74,13 @@ def status(obj):
     windows = history_windows(config.history_start, now, config.window, complete, 10**6)
     missing = [w for w in windows if w + config.window + MARGIN <= now]
     click.echo(f"last snapshot    {last.taken_at:%Y-%m-%d %H:%M} {last.status} {last.error or ''}")
-    click.echo(f"last ok snapshot {last_ok:%Y-%m-%d %H:%M}" if last_ok else "last ok snapshot none")
+    click.echo(f"last ok snapshot {f'{last_ok.taken_at:%Y-%m-%d %H:%M}' if last_ok else 'none'}")
     click.echo(f"history windows  {len(complete)} complete, {len(missing)} missing, {records} jobs")
     try:
         click.echo(f"token expires    {token_expiry(config.token()) or 'unknown'}")
     except (OSError, KeyError):
         click.echo("token            missing")
-    if not last_ok or now - last_ok > 3 * config.interval:
+    if not healthy:
         raise SystemExit(1)
 
 
