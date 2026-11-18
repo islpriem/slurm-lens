@@ -7,9 +7,9 @@ from fastapi.staticfiles import StaticFiles
 
 from ..config import Config
 from ..store import Store
-from . import health
+from . import health, stats
 
-MODULES = {"health": health}
+MODULES = {"health": health, "stats": stats}
 
 
 def create_app(config: Config, store: Store, web: Path | None = None) -> FastAPI:
