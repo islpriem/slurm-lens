@@ -3,7 +3,7 @@ COMPOSE := docker compose -f compose.yaml -f compose.dev.yaml
 # local default, the VM sets its own password
 export SLURM_LENS_DB_PASSWORD ?= slurm_lens
 
-.PHONY: up down logs db test lint collect status web psql
+.PHONY: up down logs db test lint collect status web psql restore
 
 up:
 	$(COMPOSE) up -d --build
@@ -12,7 +12,7 @@ down:
 	$(COMPOSE) down
 
 logs:
-	$(COMPOSE) logs -f collector
+	$(COMPOSE) logs -f
 
 db:
 	$(COMPOSE) up -d --wait db
@@ -34,3 +34,9 @@ web:
 
 psql:
 	$(COMPOSE) exec db psql -U slurm_lens slurm_lens
+
+# replaces the local database with a dump of the VM (pg_dump -Fc), e.g. make restore DUMP=x.dump
+restore: db
+	$(COMPOSE) exec -T db dropdb -U slurm_lens --force slurm_lens
+	$(COMPOSE) exec -T db createdb -U slurm_lens slurm_lens
+	$(COMPOSE) exec -T db pg_restore -U slurm_lens -d slurm_lens --no-owner < $(DUMP)
