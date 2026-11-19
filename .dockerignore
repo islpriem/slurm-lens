@@ -1,6 +1,10 @@
-# the image only needs the package
+# the image only needs the package and the frontend sources
 *
 !pyproject.toml
 !uv.lock
 !README.md
 !src
+!web
+web/node_modules
+web/.svelte-kit
+web/build
