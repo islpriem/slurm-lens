@@ -1,16 +1,15 @@
 # slurm-lens
 
-slurm-lens collects how a Slurm cluster is used and how its scheduler decides, to explain later
-why jobs wait and who uses which resources. It reads the Slurm REST API (slurmrestd) with the
-token of a normal user and stores everything in PostgreSQL.
+slurm-lens shows how a Slurm cluster is used and how its scheduler decides. A collector reads the
+Slurm REST API (slurmrestd) with the token of a normal user and stores snapshots and the
+accounting history in PostgreSQL, a web app turns them into statistics.
 
 ## Features
 
-- Snapshots of the queue, the nodes and the fairshare tree every few minutes
-- Configuration (partitions, nodes, QOS, ...) with its history of changes
-- The accounting history in fixed windows, without gaps from a start date
-- Read-only and gentle with slurmrestd: only allowed GET requests, pauses and retries
-- `slurm-lens status` shows what was collected, also as health check of the container
+- Collector: queue, nodes, configuration and fairshare every few minutes, the accounting history
+  without gaps from a start date; read-only and gentle with slurmrestd
+- Health: collector runs, failed requests, gaps in the history
+- Statistics: GPU allocation per model, job sizes, waits, final states and the queue
 
 ## Deployment
 
@@ -24,27 +23,30 @@ echo "SLURM_LENS_DB_PASSWORD=$(openssl rand -hex 16)" > .env
 docker compose up -d --build
 ```
 
-Updates are `git pull && docker compose up -d --build`, the database is migrated on start. A new
-token can replace the file at any time.
+The web app listens on port 8000 for a reverse proxy. Updates are `git pull && docker compose up
+-d --build`, the database is migrated on start. A new token can replace the file at any time.
 
 ## Components
 
-| Path                          |                                                   |
-| ----------------------------- | ------------------------------------------------- |
-| `src/slurm_lens/client.py`    | read-only access to slurmrestd                    |
-| `src/slurm_lens/slurm.py`     | the endpoints and how their responses become rows |
-| `src/slurm_lens/collector.py` | one run and the loop                              |
-| `src/slurm_lens/models.py`    | database schema, migrations in `migrations/`      |
-| `src/slurm_lens/cli.py`       | `slurm-lens migrate`, `collect`, `status`         |
+| Path                          |                                                    |
+| ----------------------------- | -------------------------------------------------- |
+| `src/slurm_lens/client.py`    | read-only access to slurmrestd                     |
+| `src/slurm_lens/slurm.py`     | the endpoints and how their responses become rows  |
+| `src/slurm_lens/collector.py` | one run and the loop                               |
+| `src/slurm_lens/models.py`    | database schema, migrations in `migrations/`       |
+| `src/slurm_lens/cli.py`       | `slurm-lens migrate`, `collect`, `status`, `serve` |
+| `src/slurm_lens/api/`         | FastAPI, one router per page                       |
+| `web/`                        | SvelteKit, shadcn-svelte and d3                    |
 
 ## Development
 
-Needs Docker and [uv](https://docs.astral.sh/uv/).
+Needs Docker, [uv](https://docs.astral.sh/uv/) and Node.
 
 ```sh
 ssh <login-node> scontrol token lifespan=36000 > .env
 cp config/slurm-lens.example.ini config/local.ini  # database host localhost, no token_file
-make up      # PostgreSQL and the collector
+make up      # PostgreSQL, the collector and the web app on http://localhost:8000
 make status  # what was collected so far
+cd web && npm install && cd .. && make web  # frontend with hot reload on http://localhost:5173
 make test lint
 ```
