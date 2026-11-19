@@ -11,9 +11,11 @@ services:
     volumes: !override
       - ./.data/postgres:/var/lib/postgresql/data
 
+  # the VM collects, locally only on request: docker compose --profile collector ...
   collector:
     <<: *dev
     env_file: .env
+    profiles: [collector]
 
   web:
     <<: *dev
