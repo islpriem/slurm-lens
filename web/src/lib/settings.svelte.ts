@@ -24,6 +24,8 @@ export const settings: { pseudonyms: boolean; range: Range; dark: boolean; timel
 export function update(changes: Partial<typeof settings>) {
 	Object.assign(settings, changes);
 	localStorage.setItem(KEY, JSON.stringify(settings));
+	// right away, so that charts which read the colors of the theme when they redraw get the new ones
+	document.documentElement.classList.toggle('dark', settings.dark);
 	if ('pseudonyms' in changes || 'range' in changes) return reload(invalidate('app:settings'));
 }
 

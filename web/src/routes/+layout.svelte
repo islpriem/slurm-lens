@@ -7,15 +7,11 @@
 	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
 	import { loading } from '#lib/loading.svelte.js';
 	import { groups, modules } from '#lib/modules.js';
-	import { settings } from '#lib/settings.svelte.js';
 	import type { LayoutProps } from './$types';
 
 	let { data, children }: LayoutProps = $props();
 	const current = $derived(modules.find((module) => module.id === data.module));
 
-	$effect(() => {
-		document.documentElement.classList.toggle('dark', settings.dark);
-	});
 	// app.html shows a splash until the first page is there
 	onMount(() => document.getElementById('splash')?.remove());
 </script>
