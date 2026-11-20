@@ -5,4 +5,8 @@
 	let { data }: PageProps = $props();
 </script>
 
-<View view={data.view} />
+{#if data.view}
+	<View view={data.view} />
+{:else if data.module.page}
+	<data.module.page />
+{/if}
