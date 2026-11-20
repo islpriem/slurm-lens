@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Funnel from '@lucide/svelte/icons/funnel';
 	import Pause from '@lucide/svelte/icons/pause';
 	import Play from '@lucide/svelte/icons/play';
 	import StepBack from '@lucide/svelte/icons/step-back';
@@ -9,9 +10,23 @@
 	import Choice from '#lib/components/Choice.svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Card from '#lib/components/ui/card/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import * as Popover from '#lib/components/ui/popover/index.js';
+	import { Switch } from '#lib/components/ui/switch/index.js';
 	import { loading } from '#lib/loading.svelte.js';
+	import { settings, update, type Timeline } from '#lib/settings.svelte.js';
 
-	let { gantt, color = $bindable() }: { gantt: Gantt; color: 'user' | 'account' } = $props();
+	let { gantt }: { gantt: Gantt } = $props();
+	const options = $derived(settings.timeline);
+	const choose = (changes: Partial<Timeline>) => update({ timeline: { ...options, ...changes } });
+	// the partitions of the GPU nodes, the one with the most GPUs first
+	const partitions = $derived.by(() => {
+		const gpus = new Map<string, number>();
+		for (const node of gantt.nodes) for (const p of node.partitions) gpus.set(p, (gpus.get(p) ?? 0) + node.gpus);
+		return [...gpus].sort((a, b) => b[1] - a[1]);
+	});
+	const toggle = (partition: string, on: boolean) =>
+		choose({ partitions: on ? [...options.partitions, partition] : options.partitions.filter((p) => p !== partition) });
 
 	const AHEAD = [24, 48, 120].map((hours) => ({ value: hours, label: hours === 24 ? '1 day' : `${hours / 24} days` }));
 	const COLORS = [
@@ -93,8 +108,34 @@
 			Ahead <Choice options={AHEAD} value={ahead} onchange={(hours) => show({ ahead: hours })} />
 		</label>
 		<label class="text-muted-foreground flex items-center gap-2 text-xs">
-			Colors <Choice options={COLORS} value={color} onchange={(by) => (color = by)} />
+			Colors <Choice options={COLORS} value={options.color} onchange={(color) => choose({ color })} />
 		</label>
+		<div class="text-muted-foreground flex items-center gap-2 text-xs">
+			<Switch id="shades" size="sm" checked={options.shades} onCheckedChange={(shades) => choose({ shades })} />
+			<Label for="shades" class="text-xs font-normal">User shades</Label>
+		</div>
+		<Popover.Root>
+			<Popover.Trigger>
+				{#snippet child({ props })}
+					<Button {...props} variant="outline" size="xs" class="font-normal">
+						<Funnel />
+						{options.partitions.length ? `${options.partitions.length} of ${partitions.length} partitions` : 'All partitions'}
+					</Button>
+				{/snippet}
+			</Popover.Trigger>
+			<Popover.Content align="end" class="w-72 gap-0.5 p-1.5">
+				{#each partitions as [name, gpus] (name)}
+					<label class="hover:bg-muted flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-xs">
+						<input type="checkbox" class="accent-primary" checked={options.partitions.includes(name)}
+							onchange={(event) => toggle(name, event.currentTarget.checked)} />
+						<span class="flex-1 truncate">{name}</span>
+						<span class="text-muted-foreground tabular-nums">{gpus} GPUs</span>
+					</label>
+				{/each}
+				<Button variant="ghost" size="xs" class="mt-1" disabled={!options.partitions.length}
+					onclick={() => choose({ partitions: [] })}>Show all nodes</Button>
+			</Popover.Content>
+		</Popover.Root>
 	</Card.Content>
 	<Card.Content class="text-muted-foreground flex-row flex-wrap items-center gap-x-4 gap-y-1 px-4 text-xs">
 		{#each kinds as kind (kind.label)}
@@ -102,7 +143,7 @@
 		{/each}
 		<span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-0.5"></span>snapshot</span>
 		<span class="bg-border mx-1 h-3 w-px"></span>
-		{#each Object.entries(gantt.colors[color]) as [name, fill] (name)}
+		{#each Object.entries(gantt.colors[options.color]) as [name, fill] (name)}
 			<span class="flex items-center gap-1.5"><span class="size-2.5 rounded-full" style:background={fill}></span>{name}</span>
 		{/each}
 		<span class="flex items-center gap-1.5"><span class="size-2.5 rounded-full" style:background={GRAY}></span>others</span>

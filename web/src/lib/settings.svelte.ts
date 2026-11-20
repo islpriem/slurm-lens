@@ -8,19 +8,23 @@ export type Range = { hours?: number; from?: string; to?: string };
 const KEY = 'slurm-lens';
 const stored = browser ? JSON.parse(localStorage.getItem(KEY) ?? '{}') : {};
 
+// how the timeline colors its jobs and which partitions it shows (none chosen: all)
+export type Timeline = { color: 'user' | 'account'; shades: boolean; partitions: string[] };
+
 // kept in the browser, so they survive a reload; app.html reads `dark` before the page shows
-export const settings: { pseudonyms: boolean; range: Range; dark: boolean } = $state({
+export const settings: { pseudonyms: boolean; range: Range; dark: boolean; timeline: Timeline } = $state({
 	pseudonyms: true,
 	range: { hours: 7 * 24 },
 	dark: false,
-	...stored
+	...stored,
+	timeline: { color: 'account', shades: false, partitions: [], ...stored.timeline }
 });
 
-/** Changes the settings and loads the view again, unless only the colors change. */
+/** Changes the settings; the view loads again if they change what the backend computes. */
 export function update(changes: Partial<typeof settings>) {
 	Object.assign(settings, changes);
 	localStorage.setItem(KEY, JSON.stringify(settings));
-	if (!('dark' in changes)) return reload(invalidate('app:settings'));
+	if ('pseudonyms' in changes || 'range' in changes) return reload(invalidate('app:settings'));
 }
 
 /** The settings as query string for the backend, with the time zone of the browser. */

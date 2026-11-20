@@ -4,10 +4,10 @@
 	import Details from '#lib/timeline/Details.svelte';
 	import Gantt from '#lib/timeline/Gantt.svelte';
 	import Toolbar from '#lib/timeline/Toolbar.svelte';
+	import { settings } from '#lib/settings.svelte.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
-	let color = $state<'user' | 'account'>('account');
 	let selected = $state<number>(); // job id, it stays selected while going through the snapshots
 
 	const job = $derived(data.gantt.jobs.findIndex(([id]) => id === selected));
@@ -22,18 +22,18 @@
 <svelte:window onkeydown={(event) => event.key === 'Escape' && (selected = undefined)} />
 
 <div class="grid gap-4">
-	<Toolbar gantt={data.gantt} bind:color />
+	<Toolbar gantt={data.gantt} />
 	<div class="grid items-start gap-4 xl:grid-cols-3">
 		<Card.Root class="py-3 xl:col-span-2">
 			<Card.Content class="px-3">
-				<Gantt gantt={data.gantt} {color} bind:selected />
+				<Gantt gantt={data.gantt} {...settings.timeline} bind:selected />
 			</Card.Content>
 		</Card.Root>
 		<Details
 			job={selected}
 			at={data.gantt.at}
 			{status}
-			color={job >= 0 ? jobColor(data.gantt, job, color) : 'transparent'}
+			color={job >= 0 ? jobColor(data.gantt, job, settings.timeline.color, settings.timeline.shades) : 'transparent'}
 			onclose={() => (selected = undefined)}
 		/>
 	</div>
