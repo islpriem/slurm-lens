@@ -2,9 +2,10 @@
 
 from collections import Counter
 from datetime import UTC, datetime, timedelta
+from functools import cached_property
 from statistics import median
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from sqlalchemy import Integer, func, select
 
 from .. import slurm
@@ -30,6 +31,19 @@ def view(scope: ScopeDep, config: ConfigDep) -> View:
     ])  # fmt: skip
 
 
+@router.get("/check", responses={503: {"description": "The collector or its token need a look"}})
+def check(scope: ScopeDep, config: ConfigDep, response: Response) -> dict:
+    """For uptime monitoring: 200 while everything works, 503 if something has failed."""
+    health = Health(scope, config)
+    checks = [health.collector(), health.history(), health.token()]
+    healthy = all(check.status != "fail" for check in checks)
+    response.status_code = 200 if healthy else 503
+    return {"healthy": healthy} | {
+        check.title: {"status": check.status, "value": check.value, "note": check.note}
+        for check in checks
+    }
+
+
 @router.get("/status")
 def status(session: SessionDep, config: ConfigDep) -> dict:
     """For every view: when it was generated, when the collector last succeeded, is it healthy?"""
@@ -52,6 +66,9 @@ class Health:
 
     def __init__(self, scope: Scope, config: Config):
         self.scope, self.config, self.now = scope, config, datetime.now(UTC)
+
+    @cached_property
+    def runs(self) -> list:
         items = func.sum(ApiCall.items)
         calls = (
             select(
@@ -67,10 +84,10 @@ class Health:
         query = (
             select(Snapshot, calls.c.calls, calls.c.failed, calls.c.queue, calls.c.history)
             .outerjoin(calls, calls.c.snapshot_id == Snapshot.id)
-            .where(Snapshot.taken_at.between(scope.start, scope.end))
+            .where(Snapshot.taken_at.between(self.scope.start, self.scope.end))
             .order_by(Snapshot.id)
         )
-        self.runs = scope.session.execute(query).all()
+        return self.scope.session.execute(query).all()
 
     def collector(self) -> Tile:
         session = self.scope.session
@@ -98,7 +115,8 @@ class Health:
         if expiry is None:
             return Tile("Slurm token", "unknown", "no expiry in the token")
         left = (expiry - self.now).total_seconds()
-        status = "fail" if left <= 0 else "warn" if left < 2 * DAY.total_seconds() else "ok"
+        days = left / DAY.total_seconds()
+        status = "fail" if days < 1 else "warn" if days < 7 else "ok"
         return Tile("Slurm token", expiry, f"valid for {duration(max(0, left))}", status)
 
     def collected(self) -> Tile:
