@@ -7,18 +7,19 @@ export type Range = { hours?: number; from?: string; to?: string };
 const KEY = 'slurm-lens';
 const stored = browser ? JSON.parse(localStorage.getItem(KEY) ?? '{}') : {};
 
-// kept in the browser, so they survive a reload
-export const settings: { pseudonyms: boolean; range: Range } = $state({
+// kept in the browser, so they survive a reload; app.html reads `dark` before the page shows
+export const settings: { pseudonyms: boolean; range: Range; dark: boolean } = $state({
 	pseudonyms: true,
 	range: { hours: 7 * 24 },
+	dark: false,
 	...stored
 });
 
-/** Changes the settings and loads the view again. */
+/** Changes the settings and loads the view again, unless only the colors change. */
 export function update(changes: Partial<typeof settings>) {
 	Object.assign(settings, changes);
 	localStorage.setItem(KEY, JSON.stringify(settings));
-	return invalidate('app:settings');
+	if (!('dark' in changes)) return invalidate('app:settings');
 }
 
 /** The settings as query string for the backend, with the time zone of the browser. */

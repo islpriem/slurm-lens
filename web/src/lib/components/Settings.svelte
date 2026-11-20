@@ -32,6 +32,10 @@
 		<Label for="pseudonyms" class="text-xs font-normal">Pseudonyms</Label>
 		<Switch id="pseudonyms" size="sm" checked={settings.pseudonyms} onCheckedChange={(pseudonyms) => update({ pseudonyms })} />
 	</div>
+	<div class={line}>
+		<Label for="dark" class="text-xs font-normal">Dark mode</Label>
+		<Switch id="dark" size="sm" checked={settings.dark} onCheckedChange={(dark) => update({ dark })} />
+	</div>
 	<Separator class="my-2" />
 	<div class={line}>
 		<span>Collector</span>

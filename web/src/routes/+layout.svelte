@@ -5,10 +5,15 @@
 	import Settings from '#lib/components/Settings.svelte';
 	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
 	import { groups, modules } from '#lib/modules.js';
+	import { settings } from '#lib/settings.svelte.js';
 	import type { LayoutProps } from './$types';
 
 	let { data, children }: LayoutProps = $props();
 	const current = $derived(modules.find((module) => module.id === data.module));
+
+	$effect(() => {
+		document.documentElement.classList.toggle('dark', settings.dark);
+	});
 </script>
 
 <svelte:head>
