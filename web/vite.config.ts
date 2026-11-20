@@ -12,9 +12,9 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			// routes live behind #, so the API can serve the build as a single index.html
-			router: { type: 'hash' },
-			adapter: adapter()
+			// a single page app: the API answers every path it does not know with 200.html
+			adapter: adapter({ fallback: '200.html' }),
+			paths: { relative: false }
 		})
 	],
 	server: { proxy: { '/api': 'http://127.0.0.1:8000' } }
