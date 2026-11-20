@@ -3,12 +3,13 @@
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException
 
 from ..config import Config
 from ..store import Store
-from . import gpus, health, jobs, nodes, queue, users
+from . import gpus, health, jobs, nodes, queue, timeline, users
 
 MODULES = {
     "gpus": gpus,
@@ -16,6 +17,7 @@ MODULES = {
     "queue": queue,
     "jobs": jobs,
     "users": users,
+    "timeline": timeline,
     "health": health,
 }
 
@@ -35,6 +37,7 @@ class Frontend(StaticFiles):
 def create_app(config: Config, store: Store, web: Path | None = None) -> FastAPI:
     app = FastAPI(title="SlurmLens")
     app.state.config, app.state.store = config, store
+    app.add_middleware(GZipMiddleware)
     for name, module in MODULES.items():
         app.include_router(module.router, prefix=f"/api/{name}", tags=[name])
     if web:
