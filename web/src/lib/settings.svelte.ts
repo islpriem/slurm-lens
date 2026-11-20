@@ -1,5 +1,6 @@
 import { browser } from '$app/env';
 import { invalidate } from '$app/navigation';
+import { reload } from './loading.svelte.js';
 
 // hours back from now, or a fixed start and end (ISO); everything if none is set
 export type Range = { hours?: number; from?: string; to?: string };
@@ -19,7 +20,7 @@ export const settings: { pseudonyms: boolean; range: Range; dark: boolean } = $s
 export function update(changes: Partial<typeof settings>) {
 	Object.assign(settings, changes);
 	localStorage.setItem(KEY, JSON.stringify(settings));
-	if (!('dark' in changes)) return invalidate('app:settings');
+	if (!('dark' in changes)) return reload(invalidate('app:settings'));
 }
 
 /** The settings as query string for the backend, with the time zone of the browser. */
