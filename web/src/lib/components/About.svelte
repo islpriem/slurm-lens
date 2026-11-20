@@ -1,6 +1,13 @@
+<script lang="ts">
+	import { asset } from '$app/paths';
+</script>
+
 <div class="text-muted-foreground max-w-2xl space-y-6 text-sm leading-relaxed [&_h2]:text-foreground [&_h2]:mb-2 [&_h2]:font-medium">
+	<div class="text-foreground flex items-center gap-3 text-lg font-semibold">
+		<img src={asset('slurmlens.svg')} alt="" class="size-10" />SlurmLens
+	</div>
 	<p class="text-foreground">
-		slurm-lens shows how a Slurm cluster is used: how much of the GPUs and nodes is allocated, what
+		SlurmLens shows how a Slurm cluster is used: how much of the GPUs and nodes is allocated, what
 		waits in the queue and why, how jobs start and end, and who uses what.
 	</p>
 
