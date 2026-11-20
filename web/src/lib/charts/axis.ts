@@ -1,4 +1,4 @@
-import { select, type Axis, type AxisDomain } from 'd3';
+import { scaleTime, select, timeFormat, type Axis, type AxisDomain, type ScaleLinear } from 'd3';
 
 export const margin = { top: 8, right: 12, bottom: 24, left: 48 };
 
@@ -31,3 +31,15 @@ export function categories(labels: string[], step: number) {
 	const every = Math.ceil(longest / step);
 	return { labels: labels.filter((_, i) => i % every === 0), tilt: false, bottom: margin.bottom };
 }
+
+/** The day at midnight, otherwise the time (d3 would use a 12 hour clock). */
+export const tick = (time: Date) => timeFormat(time.getHours() || time.getMinutes() ? '%H:%M' : '%d %b')(time);
+
+/** Ticks for times in milliseconds on a linear scale, about one per `pixels`. */
+export const timeTicks = (x: ScaleLinear<number, number>, pixels = 110) =>
+	scaleTime()
+		.domain(x.domain())
+		.ticks((x.range()[1] - x.range()[0]) / pixels)
+		.map(Number)
+		// d3 starts the day ticks again with every month, a tick close to the one before is left out
+		.filter((t, i, all) => !i || x(t) - x(all[i - 1]) > 50);

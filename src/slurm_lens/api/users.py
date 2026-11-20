@@ -18,7 +18,21 @@ router = APIRouter()
 @router.get("")
 def view(scope: ScopeDep) -> View:
     users = Users(scope)
-    return View(users.tiles(), [users.over_time(), users.accounts(), users.models(), users.table()])
+    panels = [users.over_time(), users.concentration(), users.accounts(), users.models()]
+    return View(users.tiles(), [*panels, users.table()])
+
+
+def concentration(values: list[float]) -> list[float]:
+    """Share of the total that the largest p percent of the values have, for p = 0, 1, ..., 100."""
+    values = sorted(values, reverse=True)
+    sums, n = [0, *accumulate(values)], len(values)
+    shares = []
+    for p in range(101):
+        k = p * n / 100
+        i = int(k)
+        part = sums[i] + (values[i] * (k - i) if i < n else 0)
+        shares.append(100 * part / (sums[-1] or 1))
+    return shares
 
 
 class Users:
@@ -88,6 +102,25 @@ class Users:
                      series(values, {"others": GRAY}), unit=" GPUs", note=note, stacked=True,
                      wide=True)  # fmt: skip
 
+    def concentration(self) -> Chart:
+        """How unequal the GPU hours are spread, like a Lorenz curve from the largest down."""
+        users = concentration(list(self.users.values()))
+        accounts = concentration(list(self.total(1).values()))
+        x = list(range(101))
+        values = {"users": users, "accounts": accounts, "equal use": x}
+        stats = {
+            "the largest 10 % of the users": f"{users[10]:.0f} %",
+            "the largest 20 %": f"{users[20]:.0f} %",
+            "the largest 10 % of the accounts": f"{accounts[10]:.0f} %",
+        }
+        note = (
+            "To the right the users or accounts with GPU hours, the largest first; up their "
+            "share of all GPU hours. With equal use the curve would be the diagonal."
+        )
+        lines = series(values, {"equal use": GRAY})
+        return Chart("Distribution of the GPU hours", "line", x, lines, unit=" %", x_unit=" %",
+                     note=note, stats=stats, y_max=100)  # fmt: skip
+
     def accounts(self) -> Chart:
         accounts = top(self.total(1), 9)
         return ranking("GPU hours per account", accounts, {"others": GRAY}, unit=" h")
@@ -101,7 +134,7 @@ class Users:
             hours[user, model if model in colors else "other"] += gpus
         values = {model: [hours[user, model] for user in x] for model in colors}
         return Chart("GPU hours per user and model", "bar", x, series(values, colors), unit=" h",
-                     stacked=True, horizontal=True)  # fmt: skip
+                     stacked=True, horizontal=True, wide=True)  # fmt: skip
 
     def table(self) -> Table:
         """Every user with GPU hours, in their account with the most."""

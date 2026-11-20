@@ -37,13 +37,14 @@ def rounded(y):
 
 @dataclass
 class Chart:
-    """Lines and areas have times as x, the other kinds categories; pies have one value each."""
+    """Lines and areas have times or numbers as x, the others categories; pies one value each."""
 
     title: str
     kind: Literal["line", "area", "dot", "bar", "pie", "box", "heatmap", "ranking"]
-    x: list[datetime] | list[str]
+    x: list[datetime] | list[float] | list[str]
     series: list[Series]
     unit: str = ""  # after every value, e.g. " %"
+    x_unit: str = ""  # after every x that is a number
     note: str = ""  # how to read the chart
     stats: dict[str, str] = field(default_factory=dict)  # key figures next to the chart
     y_max: float | None = None
@@ -125,9 +126,9 @@ def duration(seconds: float | None) -> str:
     if seconds < 60:
         return f"{seconds:.0f} s"
     hours, minutes = divmod(round(seconds / 60), 60)
-    if hours >= 48:
-        return f"{hours // 24} days {hours % 24} h"
-    return " ".join(f"{n} {unit}" for n, unit in ((hours, "h"), (minutes, "min")) if n)
+    days, hours = divmod(hours, 24) if hours >= 48 else (0, hours)
+    parts = (days, "days"), (hours, "h"), (0 if days else minutes, "min")
+    return " ".join(f"{n} {unit}" for n, unit in parts if n)
 
 
 def box_note(of: str) -> str:
