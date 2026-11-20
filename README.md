@@ -1,6 +1,8 @@
-# slurm-lens
+<img src="web/static/slurmlens.svg" alt="" width="64">
 
-slurm-lens shows how a Slurm cluster is used and how its scheduler decides. A collector reads the
+# SlurmLens
+
+SlurmLens shows how a Slurm cluster is used and how its scheduler decides. A collector reads the
 Slurm REST API (slurmrestd) with the token of a normal user and stores snapshots and the
 accounting history in PostgreSQL, a web app turns them into statistics.
 
@@ -11,8 +13,9 @@ accounting history in PostgreSQL, a web app turns them into statistics.
 - GPUs and nodes: allocation per model and node over time, idle capacity
 - Queue: why jobs are pending, GPUs wanted per partition, waits, submissions per weekday and hour
 - Jobs: sizes, backfill or main scheduler, time limits and runtimes, final states
-- Users and accounts: GPU hours, fairshare, pending jobs; pseudonyms by default
-- Health: collector runs, requests to slurmrestd, gaps in the history
+- Users and accounts: GPU hours and how unequally they are spread, fairshare, pending jobs;
+  pseudonyms by default
+- Health: collector runs, requests to slurmrestd, gaps in the history, a check for monitoring
 
 ## Deployment
 
@@ -26,8 +29,9 @@ echo "SLURM_LENS_DB_PASSWORD=$(openssl rand -hex 16)" > .env
 docker compose up -d --build
 ```
 
-The web app listens on port 8000 for a reverse proxy. Updates are `git pull && docker compose up
--d --build`, the database is migrated on start. A new token can replace the file at any time.
+The web app listens on port 8000 for a reverse proxy. `/api/health/check` answers 503 when the
+collector or its token need a look, for uptime monitoring. Updates are `git pull && docker compose
+up -d --build`, the database is migrated on start. A new token can replace the file at any time.
 
 ## Components
 
