@@ -7,7 +7,7 @@ from fastapi import APIRouter
 from sqlalchemy import select
 
 from ..models import JobRecord, JobRecordNode, NodeSnapshot, Snapshot
-from .query import allocated, capacity, nodes
+from .query import allocated, gpu_nodes, nodes
 from .scope import Scope, ScopeDep
 from .view import GRAY, PALETTE, RED, Chart, Table, Tile, View, box, box_note, pie, series
 
@@ -38,10 +38,7 @@ class Cluster:
     def __init__(self, scope: Scope):
         self.scope = scope
         self.nodes = nodes(scope.session)
-        # GPU nodes by model, the model with the most GPUs first
-        models = [model for model, _ in capacity(self.nodes).most_common()]
-        gpu_nodes = [node for node in self.nodes if node.gpus]
-        self.gpu_nodes = sorted(gpu_nodes, key=lambda node: (models.index(node.model), node.name))
+        self.gpu_nodes = gpu_nodes(self.nodes)
         latest = Snapshot.latest(scope.session, "ok")
         query = select(NodeSnapshot).where(NodeSnapshot.snapshot_id == (latest and latest.id))
         self.latest = {node.node: node for node in scope.session.scalars(query)}

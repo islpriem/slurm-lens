@@ -70,6 +70,12 @@ def capacity(nodes: list[Node]) -> Counter:
     return result
 
 
+def gpu_nodes(nodes: list[Node]) -> list[Node]:
+    """The nodes with GPUs, by model (the one with the most GPUs first) and name."""
+    models = [model for model, _ in capacity(nodes).most_common()]
+    return sorted((n for n in nodes if n.gpus), key=lambda n: (models.index(n.model), n.name))
+
+
 def model_colors(capacity: Counter) -> dict[str, str]:
     """The models with the most GPUs get the palette in order, the others are drawn gray."""
     models = [model for model, _ in capacity.most_common()]
