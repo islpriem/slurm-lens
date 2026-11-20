@@ -1,7 +1,12 @@
 from collections import Counter
+from datetime import UTC, datetime, timedelta
+
+import pytest
 
 from slurm_lens.api.nodes import state
 from slurm_lens.api.queue import reason
+from slurm_lens.api.timeline import Piece, Slots
+from slurm_lens.api.users import concentration
 from slurm_lens.api.view import box, duration, grouped, percent, pie, top
 
 
@@ -40,3 +45,17 @@ def test_groups_of_slurm_states_and_reasons():
     assert [reason(r) for r in reasons] == [
         "competing", "dependency", "held", "limit", "nodes unavailable", "other",
     ]  # fmt: skip
+
+
+def test_concentration_of_the_largest():
+    shares = concentration([3, 1])
+    assert (shares[0], shares[50], shares[100]) == (0, 75, 100)
+    assert concentration([2, 2, 2, 2]) == pytest.approx(list(range(101)))
+
+
+def test_slots_keep_known_gpus_and_fill_the_lowest_free():
+    slots, start = Slots(4), datetime(2026, 11, 20, tzinfo=UTC)
+    hour = timedelta(hours=1)
+    assert slots.place(Piece(0, "gx01", 2, start, start + 2 * hour, fixed=[1, 2])) == [1, 2]
+    assert slots.place(Piece(1, "gx01", 2, start + hour, start + 3 * hour)) == [0, 3]
+    assert slots.place(Piece(2, "gx01", 1, start + 2 * hour, start + 4 * hour)) == [1]

@@ -172,12 +172,12 @@
      "select_type": [
       "ONE_ROW"
      ],
-     "list": "gx09",
+     "list": "gx10",
      "whole": false,
      "allocation": [
       {
        "index": 0,
-       "name": "gx09",
+       "name": "gx10",
        "cpus": {
         "count": 96,
         "used": 96
@@ -909,7 +909,7 @@
    "memory_update_margin": 0,
    "name": "",
    "network": "",
-   "nodes": "gx09",
+   "nodes": "gx10",
    "nice": 0,
    "tasks_per_core": {
     "set": false,
@@ -1380,7 +1380,7 @@
    },
    "restart_cnt": 0,
    "resv_name": "",
-   "scheduled_nodes": "gx08",
+   "scheduled_nodes": "gx14",
    "segment_size": 0,
    "selinux_context": "",
    "shared": [],
