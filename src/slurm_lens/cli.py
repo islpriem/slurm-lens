@@ -10,7 +10,7 @@ from sqlalchemy import func, select
 
 from .api import create_app
 from .client import token_expiry
-from .collector import MARGIN, Collector, history_windows
+from .collector import Collector, missing_windows
 from .config import Config
 from .models import HistoryWindow, JobRecord, Snapshot
 from .store import Store
@@ -71,8 +71,7 @@ def status(obj):
         records = session.scalar(select(func.count()).select_from(JobRecord))
     if last is None:
         raise click.ClickException("no snapshot yet")
-    windows = history_windows(config.history_start, now, config.window, complete, 10**6)
-    missing = [w for w in windows if w + config.window + MARGIN <= now]
+    missing = missing_windows(config, complete, now)
     click.echo(f"last snapshot    {last.taken_at:%Y-%m-%d %H:%M} {last.status} {last.error or ''}")
     click.echo(f"last ok snapshot {f'{last_ok.taken_at:%Y-%m-%d %H:%M}' if last_ok else 'none'}")
     click.echo(f"history windows  {len(complete)} complete, {len(missing)} missing, {records} jobs")

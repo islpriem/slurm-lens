@@ -45,6 +45,12 @@ def history_windows(start, now, size, complete, backfill) -> list[datetime]:
     return older[:backfill] + recent
 
 
+def missing_windows(config: Config, complete: set[datetime], now: datetime) -> list[datetime]:
+    """Starts of the windows that ended a while ago but are not complete yet."""
+    windows = history_windows(config.history_start, now, config.window, complete, 10**6)
+    return [w for w in windows if w + config.window + MARGIN <= now]
+
+
 class Collector:
     """Collects one snapshot per run; every step has its own transaction and may fail alone."""
 
