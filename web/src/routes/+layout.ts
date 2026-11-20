@@ -1,8 +1,8 @@
 import { get, type Status } from '#lib/api.js';
 import type { LayoutLoad } from './$types';
 
-// runs again for every module and refresh, so the header says when the view was generated
-export const load: LayoutLoad = async ({ fetch, params }) => ({
-	module: params.module,
-	status: await get<Status>('health/status', fetch)
-});
+// runs again for every module, refresh and change of the settings, like the view itself
+export const load: LayoutLoad = async ({ fetch, params, depends }) => {
+	depends('app:settings');
+	return { module: params.module, status: await get<Status>('health/status', fetch) };
+};
