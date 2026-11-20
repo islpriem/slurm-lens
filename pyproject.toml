@@ -3,6 +3,7 @@ name = "slurm-lens"
 version = "0.1.0"
 description = "Collects Slurm scheduling data to explain how jobs get scheduled"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
     "alembic",

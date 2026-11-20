@@ -8,8 +8,11 @@ accounting history in PostgreSQL, a web app turns them into statistics.
 
 - Collector: queue, nodes, configuration and fairshare every few minutes, the accounting history
   without gaps from a start date; read-only and gentle with slurmrestd
-- Health: collector runs, failed requests, gaps in the history
-- Statistics: GPU allocation per model, job sizes, waits, final states and the queue
+- GPUs and nodes: allocation per model and node over time, idle capacity
+- Queue: why jobs are pending, GPUs wanted per partition, waits, submissions per weekday and hour
+- Jobs: sizes, backfill or main scheduler, time limits and runtimes, final states
+- Users and accounts: GPU hours, fairshare, pending jobs; pseudonyms by default
+- Health: collector runs, requests to slurmrestd, gaps in the history
 
 ## Deployment
 
@@ -28,25 +31,31 @@ The web app listens on port 8000 for a reverse proxy. Updates are `git pull && d
 
 ## Components
 
-| Path                          |                                                    |
-| ----------------------------- | -------------------------------------------------- |
-| `src/slurm_lens/client.py`    | read-only access to slurmrestd                     |
-| `src/slurm_lens/slurm.py`     | the endpoints and how their responses become rows  |
-| `src/slurm_lens/collector.py` | one run and the loop                               |
-| `src/slurm_lens/models.py`    | database schema, migrations in `migrations/`       |
-| `src/slurm_lens/cli.py`       | `slurm-lens migrate`, `collect`, `status`, `serve` |
-| `src/slurm_lens/api/`         | FastAPI, one router per page                       |
-| `web/`                        | SvelteKit, shadcn-svelte and d3                    |
+| Path                          |                                                              |
+| ----------------------------- | ------------------------------------------------------------ |
+| `src/slurm_lens/client.py`    | read-only access to slurmrestd                               |
+| `src/slurm_lens/slurm.py`     | the endpoints and how their responses become rows            |
+| `src/slurm_lens/collector.py` | one run and the loop                                         |
+| `src/slurm_lens/models.py`    | database schema, migrations in `migrations/`                 |
+| `src/slurm_lens/cli.py`       | `slurm-lens migrate`, `collect`, `status`, `serve`           |
+| `src/slurm_lens/api/`         | FastAPI, one router per page that computes its charts        |
+| `web/`                        | SvelteKit, shadcn-svelte and d3, draws what the API computed |
 
 ## Development
 
 Needs Docker, [uv](https://docs.astral.sh/uv/) and Node.
 
 ```sh
-ssh <login-node> scontrol token lifespan=36000 > .env
 cp config/slurm-lens.example.ini config/local.ini  # database host localhost, no token_file
-make up      # PostgreSQL, the collector and the web app on http://localhost:8000
-make status  # what was collected so far
+make up                   # PostgreSQL and the web app on http://localhost:8000
+make restore DUMP=<file>  # load a dump of the production database
 cd web && npm install && cd .. && make web  # frontend with hot reload on http://localhost:5173
 make test lint
 ```
+
+The collector does not run locally by default, `make collect` does one run with the token in
+`.env`.
+
+## License
+
+MIT
