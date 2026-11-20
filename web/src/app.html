@@ -4,14 +4,27 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
+		<meta name="theme-color" content="#0d9488" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
+		<link rel="icon" href="%sveltekit.assets%/slurmlens.svg" type="image/svg+xml" />
+		<link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
 		%sveltekit.head%
 		<script>
 			// dark mode from the settings before the first paint, so the page does not flash white
 			const settings = JSON.parse(localStorage.getItem('slurm-lens') ?? '{}');
 			document.documentElement.classList.toggle('dark', settings.dark === true);
 		</script>
+		<style>
+			/* shown until the first page is loaded, the layout removes it */
+			html { background: #f5f5f5; }
+			html.dark { background: #0a0a0a; color-scheme: dark; }
+			#splash { position: fixed; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: #737373; font: 14px system-ui, sans-serif; }
+			#splash img { width: 48px; animation: pulse 1s ease-in-out infinite alternate; }
+			@keyframes pulse { to { opacity: 0.3; } }
+		</style>
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="tap">
+		<div id="splash"><img src="%sveltekit.assets%/slurmlens.svg" alt="" />Loading SlurmLens</div>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

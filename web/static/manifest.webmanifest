@@ -1,0 +1,9 @@
+{
+	"name": "SlurmLens",
+	"short_name": "SlurmLens",
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#0d9488",
+	"background_color": "#ffffff",
+	"icons": [{ "src": "/slurmlens.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
