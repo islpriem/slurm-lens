@@ -1,5 +1,6 @@
 import type { Component } from 'svelte';
 import Activity from '@lucide/svelte/icons/activity';
+import ChartGantt from '@lucide/svelte/icons/chart-gantt';
 import Hourglass from '@lucide/svelte/icons/hourglass';
 import Info from '@lucide/svelte/icons/info';
 import ListChecks from '@lucide/svelte/icons/list-checks';
@@ -21,6 +22,10 @@ export const groups: { title: string; modules: Module[] }[] = [
 			{ id: 'jobs', title: 'Jobs', icon: ListChecks },
 			{ id: 'users', title: 'Users and accounts', icon: Users }
 		]
+	},
+	{
+		title: 'Exploration',
+		modules: [{ id: 'timeline', title: 'Timeline', icon: ChartGantt }]
 	},
 	{
 		title: 'Service',
